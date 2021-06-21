@@ -475,8 +475,8 @@ If None, sweep_size is equal to the number of degrees of freedom being sampled
 <dt class="sig sig-object py" id="netket.sampler.MetropolisSampler.is_exact">
 <span class="sig-name descname"><span class="pre">is_exact</span></span><a class="headerlink" href="#netket.sampler.MetropolisSampler.is_exact" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns <cite>True</cite> if the sampler is exact.</p>
-<p>The sampler is exact if the samples are always distributed according to the
-chosen power of the variational state.</p>
+<p>The sampler is exact if all the samples are exactly distributed according to the
+chosen power of the variational state, and there is no correlation among them.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p>
