@@ -266,14 +266,14 @@
 
             <span class="n">lind_mat</span> <span class="o">=</span> <span class="n">lindblad</span><span class="o">.</span><span class="n">to_dense</span><span class="p">()</span>
 
-            <span class="n">ldagl</span> <span class="o">=</span> <span class="n">lind_mat</span><span class="o">.</span><span class="n">H</span> <span class="o">*</span> <span class="n">lind_mat</span>
+            <span class="n">ldagl</span> <span class="o">=</span> <span class="n">lind_mat</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span> <span class="o">*</span> <span class="n">lind_mat</span>
             <span class="n">w</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">eigh</span><span class="p">(</span><span class="n">ldagl</span><span class="p">)</span>
 
         <span class="k">else</span><span class="p">:</span>
             <span class="kn">from</span> <span class="nn">scipy.sparse.linalg</span> <span class="kn">import</span> <span class="n">eigsh</span>
 
             <span class="n">lind_mat</span> <span class="o">=</span> <span class="n">lindblad</span><span class="o">.</span><span class="n">to_sparse</span><span class="p">()</span>
-            <span class="n">ldagl</span> <span class="o">=</span> <span class="n">lind_mat</span><span class="o">.</span><span class="n">H</span> <span class="o">*</span> <span class="n">lind_mat</span>
+            <span class="n">ldagl</span> <span class="o">=</span> <span class="n">lind_mat</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span> <span class="o">*</span> <span class="n">lind_mat</span>
 
             <span class="n">w</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">eigsh</span><span class="p">(</span><span class="n">ldagl</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s2">&quot;SM&quot;</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 
