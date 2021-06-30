@@ -437,8 +437,8 @@
 <h1>netket.hilbert.DoubledHilbert<a class="headerlink" href="#netket-hilbert-doubledhilbert" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="netket.hilbert.DoubledHilbert">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">netket.hilbert.</span></span><span class="sig-name descname"><span class="pre">DoubledHilbert</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hilb</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/netket/hilbert/doubled_hilbert.html#DoubledHilbert"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#netket.hilbert.DoubledHilbert" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="netket.hilbert.AbstractHilbert.html#netket.hilbert.AbstractHilbert" title="netket.hilbert.abstract_hilbert.AbstractHilbert"><code class="xref py py-class docutils literal notranslate"><span class="pre">netket.hilbert.abstract_hilbert.AbstractHilbert</span></code></a></p>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">netket.hilbert.</span></span><span class="sig-name descname"><span class="pre">DoubledHilbert</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kw_args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/netket/hilbert/doubled_hilbert.html#DoubledHilbert"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#netket.hilbert.DoubledHilbert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#netket.hilbert.DoubledHilbert" title="netket.hilbert.doubled_hilbert.DoubledHilbert"><code class="xref py py-class docutils literal notranslate"><span class="pre">netket.hilbert.doubled_hilbert.DoubledHilbert</span></code></a></p>
 <p>Superoperatorial hilbert space for states living in the
 tensorised state Hotimes H, encoded according to Choi’s isomorphism.</p>
 <dl class="py method">
@@ -620,23 +620,6 @@ hilbert space.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="netket.hilbert.DoubledHilbert.size_at_index">
-<span class="sig-name descname"><span class="pre">size_at_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/netket/hilbert/doubled_hilbert.html#DoubledHilbert.size_at_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#netket.hilbert.DoubledHilbert.size_at_index" title="Permalink to this definition">¶</a></dt>
-<dd><p>Size of the local degrees of freedom at the site i.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>i</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – The index of the desired site</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></p>
-</dd>
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>The number of degrees of freedom at that site</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="netket.hilbert.DoubledHilbert.states">
 <span class="sig-name descname"><span class="pre">states</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#netket.hilbert.DoubledHilbert.states" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns an iterator over all valid configurations of the Hilbert space.
@@ -646,21 +629,6 @@ and <code class="docutils literal notranslate"><span class="pre">`all_states`</s
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Iterator" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Iterator</span></code></a>[<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.21)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a>]</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="netket.hilbert.DoubledHilbert.states_at_index">
-<span class="sig-name descname"><span class="pre">states_at_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/netket/hilbert/doubled_hilbert.html#DoubledHilbert.states_at_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#netket.hilbert.DoubledHilbert.states_at_index" title="Permalink to this definition">¶</a></dt>
-<dd><p>A list of discrete local quantum numbers at the site i.
-If the local states are infinitely many, None is returned.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]]</p>
-</dd>
-<dt class="field-even">Parameters</dt>
-<dd class="field-even"><p><strong>i</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – </p>
 </dd>
 </dl>
 </dd></dl>

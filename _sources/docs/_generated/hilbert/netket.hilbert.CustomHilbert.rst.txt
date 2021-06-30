@@ -13,6 +13,7 @@
    .. rst-class:: class-dl-groups
 
    Attributes
+      .. autoattribute:: CustomHilbert.constrained
       .. autoattribute:: CustomHilbert.is_discrete
       .. autoattribute:: CustomHilbert.is_finite
       .. autoattribute:: CustomHilbert.is_indexable
