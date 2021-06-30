@@ -1,0 +1,6 @@
+﻿netket.graph.Grid
+=================
+
+.. currentmodule:: netket.graph
+
+.. autofunction:: Grid
