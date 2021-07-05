@@ -17,7 +17,6 @@
       .. autoattribute:: AbstractHilbert.is_finite
       .. autoattribute:: AbstractHilbert.is_indexable
       .. autoattribute:: AbstractHilbert.n_states
-      .. autoattribute:: AbstractHilbert.shape
       .. autoattribute:: AbstractHilbert.size
    
       
@@ -26,6 +25,5 @@
    Methods
       .. automethod:: AbstractHilbert.ptrace
       .. automethod:: AbstractHilbert.random_state
-      .. automethod:: AbstractHilbert.size_at_index
 
    
