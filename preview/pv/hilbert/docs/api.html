@@ -366,47 +366,15 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#variational-state-interface">Variational State Interface</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="_generated/variational/netket.vqs.VariationalState.html">netket.vqs.VariationalState</a></li>
-<li class="toctree-l3"><a class="reference internal" href="_generated/variational/netket.vqs.MCState.html">netket.vqs.MCState</a></li>
-<li class="toctree-l3"><a class="reference internal" href="_generated/variational/netket.vqs.MCMixedState.html">netket.vqs.MCMixedState</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="#variational-state-interface">Variational State Interface</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#optimizer-module">Optimizer Module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#optimizers">Optimizers</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="_generated/optim/netket.optimizer.Adam.html">netket.optimizer.Adam</a></li>
-<li class="toctree-l4"><a class="reference internal" href="_generated/optim/netket.optimizer.AdaGrad.html">netket.optimizer.AdaGrad</a></li>
-<li class="toctree-l4"><a class="reference internal" href="_generated/optim/netket.optimizer.Sgd.html">netket.optimizer.Sgd</a></li>
-<li class="toctree-l4"><a class="reference internal" href="_generated/optim/netket.optimizer.Momentum.html">netket.optimizer.Momentum</a></li>
-<li class="toctree-l4"><a class="reference internal" href="_generated/optim/netket.optimizer.RmsProp.html">netket.optimizer.RmsProp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#optimizers">Optimizers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#preconditioners">Preconditioners</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#quantum-geometric-tensor">Quantum Geometric Tensor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dense-solvers">Dense solvers</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#preconditioners">Preconditioners</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="_generated/optim/netket.optimizer.SR.html">netket.optimizer.SR</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#quantum-geometric-tensor">Quantum Geometric Tensor</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="_generated/optim/netket.optimizer.qgt.QGTAuto.html">netket.optimizer.qgt.QGTAuto</a></li>
-<li class="toctree-l4"><a class="reference internal" href="_generated/optim/netket.optimizer.qgt.QGTOnTheFly.html">netket.optimizer.qgt.QGTOnTheFly</a></li>
-<li class="toctree-l4"><a class="reference internal" href="_generated/optim/netket.optimizer.qgt.QGTJacobianPyTree.html">netket.optimizer.qgt.QGTJacobianPyTree</a></li>
-<li class="toctree-l4"><a class="reference internal" href="_generated/optim/netket.optimizer.qgt.QGTJacobianDense.html">netket.optimizer.qgt.QGTJacobianDense</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#dense-solvers">Dense solvers</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="_generated/optim/netket.optimizer.solver.svd.html">netket.optimizer.solver.svd</a></li>
-<li class="toctree-l4"><a class="reference internal" href="_generated/optim/netket.optimizer.solver.cholesky.html">netket.optimizer.solver.cholesky</a></li>
-<li class="toctree-l4"><a class="reference internal" href="_generated/optim/netket.optimizer.solver.LU.html">netket.optimizer.solver.LU</a></li>
-<li class="toctree-l4"><a class="reference internal" href="_generated/optim/netket.optimizer.solver.solve.html">netket.optimizer.solver.solve</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#optimization-drivers">Optimization drivers</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="_generated/driver/netket.driver.AbstractVariationalDriver.html">netket.driver.AbstractVariationalDriver</a></li>
-<li class="toctree-l3"><a class="reference internal" href="_generated/driver/netket.driver.VMC.html">netket.driver.VMC</a></li>
-<li class="toctree-l3"><a class="reference internal" href="_generated/driver/netket.driver.SteadyState.html">netket.driver.SteadyState</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="#optimization-drivers">Optimization drivers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#logging-output">Logging output</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="_generated/driver/netket.logging.RuntimeLog.html">netket.logging.RuntimeLog</a></li>
 <li class="toctree-l3"><a class="reference internal" href="_generated/driver/netket.logging.JsonLog.html">netket.logging.JsonLog</a></li>
@@ -880,15 +848,6 @@ Read more about the design goal of this module in their <a class="reference exte
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="_generated/variational/netket.vqs.VariationalState.html#netket.vqs.VariationalState" title="netket.vqs.VariationalState"><code class="xref py py-obj docutils literal notranslate"><span class="pre">netket.vqs.VariationalState</span></code></a></p></td>
-<td><p>Abstract class for variational states representing either pure states or mixed quantum states.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="_generated/variational/netket.vqs.MCState.html#netket.vqs.MCState" title="netket.vqs.MCState"><code class="xref py py-obj docutils literal notranslate"><span class="pre">netket.vqs.MCState</span></code></a></p></td>
-<td><p>Variational State for a Variational Neural Quantum State.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="_generated/variational/netket.vqs.MCMixedState.html#netket.vqs.MCMixedState" title="netket.vqs.MCMixedState"><code class="xref py py-obj docutils literal notranslate"><span class="pre">netket.vqs.MCMixedState</span></code></a></p></td>
-<td><p>Variational State for a Mixed Variational Neural Quantum State.</p></td>
-</tr>
 </tbody>
 </table>
 </section>
@@ -917,21 +876,6 @@ optimisers, and it’s extremely easy to use step-dependent schedulers.</p>
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="_generated/optim/netket.optimizer.Adam.html#netket.optimizer.Adam" title="netket.optimizer.Adam"><code class="xref py py-obj docutils literal notranslate"><span class="pre">netket.optimizer.Adam</span></code></a></p></td>
-<td><p>Adam Optimizer.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="_generated/optim/netket.optimizer.AdaGrad.html#netket.optimizer.AdaGrad" title="netket.optimizer.AdaGrad"><code class="xref py py-obj docutils literal notranslate"><span class="pre">netket.optimizer.AdaGrad</span></code></a></p></td>
-<td><p>AdaGrad Optimizer.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="_generated/optim/netket.optimizer.Sgd.html#netket.optimizer.Sgd" title="netket.optimizer.Sgd"><code class="xref py py-obj docutils literal notranslate"><span class="pre">netket.optimizer.Sgd</span></code></a></p></td>
-<td><p>Stochastic Gradient Descent Optimizer.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="_generated/optim/netket.optimizer.Momentum.html#netket.optimizer.Momentum" title="netket.optimizer.Momentum"><code class="xref py py-obj docutils literal notranslate"><span class="pre">netket.optimizer.Momentum</span></code></a></p></td>
-<td><p>Momentum-based Optimizer.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="_generated/optim/netket.optimizer.RmsProp.html#netket.optimizer.RmsProp" title="netket.optimizer.RmsProp"><code class="xref py py-obj docutils literal notranslate"><span class="pre">netket.optimizer.RmsProp</span></code></a></p></td>
-<td><p>RMSProp optimizer.</p></td>
-</tr>
 </tbody>
 </table>
 </section>
@@ -945,9 +889,6 @@ gradient preconditioner.</p>
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="_generated/optim/netket.optimizer.SR.html#netket.optimizer.SR" title="netket.optimizer.SR"><code class="xref py py-obj docutils literal notranslate"><span class="pre">netket.optimizer.SR</span></code></a></p></td>
-<td><p>Construct the structure holding the parameters for using the Stochastic Reconfiguration/Natural gradient method.</p></td>
-</tr>
 </tbody>
 </table>
 </section>
@@ -960,18 +901,6 @@ gradient preconditioner.</p>
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="_generated/optim/netket.optimizer.qgt.QGTAuto.html#netket.optimizer.qgt.QGTAuto" title="netket.optimizer.qgt.QGTAuto"><code class="xref py py-obj docutils literal notranslate"><span class="pre">netket.optimizer.qgt.QGTAuto</span></code></a></p></td>
-<td><p>Automatically select the ‘best’ Quantum Geometric Tensor computing format acoording to some rather untested heuristic.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="_generated/optim/netket.optimizer.qgt.QGTOnTheFly.html#netket.optimizer.qgt.QGTOnTheFly" title="netket.optimizer.qgt.QGTOnTheFly"><code class="xref py py-obj docutils literal notranslate"><span class="pre">netket.optimizer.qgt.QGTOnTheFly</span></code></a></p></td>
-<td><p>Lazy representation of an S Matrix computed by performing 2 jvp and 1 vjp products, using the variational state’s model, the samples that have already been computed, and the vector.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="_generated/optim/netket.optimizer.qgt.QGTJacobianPyTree.html#netket.optimizer.qgt.QGTJacobianPyTree" title="netket.optimizer.qgt.QGTJacobianPyTree"><code class="xref py py-obj docutils literal notranslate"><span class="pre">netket.optimizer.qgt.QGTJacobianPyTree</span></code></a></p></td>
-<td><p>Semi-lazy representation of an S Matrix where the Jacobian O_k is precomputed and stored as a PyTree.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="_generated/optim/netket.optimizer.qgt.QGTJacobianDense.html#netket.optimizer.qgt.QGTJacobianDense" title="netket.optimizer.qgt.QGTJacobianDense"><code class="xref py py-obj docutils literal notranslate"><span class="pre">netket.optimizer.qgt.QGTJacobianDense</span></code></a></p></td>
-<td><p>Semi-lazy representation of an S Matrix where the Jacobian O_k is precomputed and stored as a dense matrix.</p></td>
-</tr>
 </tbody>
 </table>
 </section>
@@ -984,18 +913,6 @@ gradient preconditioner.</p>
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="_generated/optim/netket.optimizer.solver.svd.html#netket.optimizer.solver.svd" title="netket.optimizer.solver.svd"><code class="xref py py-obj docutils literal notranslate"><span class="pre">netket.optimizer.solver.svd</span></code></a></p></td>
-<td><p>Solve the linear system using Singular Value Decomposition.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="_generated/optim/netket.optimizer.solver.cholesky.html#netket.optimizer.solver.cholesky" title="netket.optimizer.solver.cholesky"><code class="xref py py-obj docutils literal notranslate"><span class="pre">netket.optimizer.solver.cholesky</span></code></a></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="_generated/optim/netket.optimizer.solver.LU.html#netket.optimizer.solver.LU" title="netket.optimizer.solver.LU"><code class="xref py py-obj docutils literal notranslate"><span class="pre">netket.optimizer.solver.LU</span></code></a></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="_generated/optim/netket.optimizer.solver.solve.html#netket.optimizer.solver.solve" title="netket.optimizer.solver.solve"><code class="xref py py-obj docutils literal notranslate"><span class="pre">netket.optimizer.solver.solve</span></code></a></p></td>
-<td><p></p></td>
-</tr>
 </tbody>
 </table>
 </section>
@@ -1009,15 +926,6 @@ gradient preconditioner.</p>
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="_generated/driver/netket.driver.AbstractVariationalDriver.html#netket.driver.AbstractVariationalDriver" title="netket.driver.AbstractVariationalDriver"><code class="xref py py-obj docutils literal notranslate"><span class="pre">netket.driver.AbstractVariationalDriver</span></code></a></p></td>
-<td><p>Abstract base class for NetKet Variational Monte Carlo drivers</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="_generated/driver/netket.driver.VMC.html#netket.driver.VMC" title="netket.driver.VMC"><code class="xref py py-obj docutils literal notranslate"><span class="pre">netket.driver.VMC</span></code></a></p></td>
-<td><p>Energy minimization using Variational Monte Carlo (VMC).</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="_generated/driver/netket.driver.SteadyState.html#netket.driver.SteadyState" title="netket.driver.SteadyState"><code class="xref py py-obj docutils literal notranslate"><span class="pre">netket.driver.SteadyState</span></code></a></p></td>
-<td><p>Steady-state driver minimizing L^†L.</p></td>
-</tr>
 </tbody>
 </table>
 </section>
