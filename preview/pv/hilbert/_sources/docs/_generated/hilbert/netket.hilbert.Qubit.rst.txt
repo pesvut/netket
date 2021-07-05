@@ -14,7 +14,6 @@
 
    Attributes
       .. autoattribute:: Qubit.constrained
-      .. autoattribute:: Qubit.is_discrete
       .. autoattribute:: Qubit.is_finite
       .. autoattribute:: Qubit.is_indexable
       .. autoattribute:: Qubit.local_size

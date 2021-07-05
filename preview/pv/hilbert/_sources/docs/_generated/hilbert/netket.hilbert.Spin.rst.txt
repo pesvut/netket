@@ -14,7 +14,6 @@
 
    Attributes
       .. autoattribute:: Spin.constrained
-      .. autoattribute:: Spin.is_discrete
       .. autoattribute:: Spin.is_finite
       .. autoattribute:: Spin.is_indexable
       .. autoattribute:: Spin.local_size

@@ -161,22 +161,6 @@
 <span class="sd">        Hilbert space.&quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>  <span class="c1"># pragma: no cover</span>
 
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">is_discrete</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Whether the hilbert space is discrete.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="kc">False</span>  <span class="c1"># pragma: no cover</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">is_finite</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Whether the local hilbert space is finite.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="kc">False</span>  <span class="c1"># pragma: no cover</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">n_states</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;The total dimension of the many-body Hilbert space.</span>
-<span class="sd">        Throws an exception iff the space is not indexable.&quot;&quot;&quot;</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The Hilbert space is infinite.&quot;</span><span class="p">)</span>
-
     <span class="c1"># after removing legacy:</span>
     <span class="c1"># signature must be the following</span>
     <span class="c1"># def random_state(self, key, size=None, dtype=np.float32):</span>

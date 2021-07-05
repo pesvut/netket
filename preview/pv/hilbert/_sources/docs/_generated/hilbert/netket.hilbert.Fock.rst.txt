@@ -14,7 +14,6 @@
 
    Attributes
       .. autoattribute:: Fock.constrained
-      .. autoattribute:: Fock.is_discrete
       .. autoattribute:: Fock.is_finite
       .. autoattribute:: Fock.is_indexable
       .. autoattribute:: Fock.local_size

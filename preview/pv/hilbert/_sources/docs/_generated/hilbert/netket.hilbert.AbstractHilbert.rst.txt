@@ -13,10 +13,7 @@
    .. rst-class:: class-dl-groups
 
    Attributes
-      .. autoattribute:: AbstractHilbert.is_discrete
-      .. autoattribute:: AbstractHilbert.is_finite
       .. autoattribute:: AbstractHilbert.is_indexable
-      .. autoattribute:: AbstractHilbert.n_states
       .. autoattribute:: AbstractHilbert.size
    
       
