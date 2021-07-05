@@ -366,15 +366,47 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="api.html#variational-state-interface">Variational State Interface</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.html#optimizer-module">Optimizer Module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="api.html#optimizers">Optimizers</a></li>
-<li class="toctree-l3"><a class="reference internal" href="api.html#preconditioners">Preconditioners</a></li>
-<li class="toctree-l3"><a class="reference internal" href="api.html#quantum-geometric-tensor">Quantum Geometric Tensor</a></li>
-<li class="toctree-l3"><a class="reference internal" href="api.html#dense-solvers">Dense solvers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#variational-state-interface">Variational State Interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="_generated/variational/netket.vqs.VariationalState.html">netket.vqs.VariationalState</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_generated/variational/netket.vqs.MCState.html">netket.vqs.MCState</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_generated/variational/netket.vqs.MCMixedState.html">netket.vqs.MCMixedState</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="api.html#optimization-drivers">Optimization drivers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#optimizer-module">Optimizer Module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api.html#optimizers">Optimizers</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="_generated/optim/netket.optimizer.Adam.html">netket.optimizer.Adam</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_generated/optim/netket.optimizer.AdaGrad.html">netket.optimizer.AdaGrad</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_generated/optim/netket.optimizer.Sgd.html">netket.optimizer.Sgd</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_generated/optim/netket.optimizer.Momentum.html">netket.optimizer.Momentum</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_generated/optim/netket.optimizer.RmsProp.html">netket.optimizer.RmsProp</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#preconditioners">Preconditioners</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="_generated/optim/netket.optimizer.SR.html">netket.optimizer.SR</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#quantum-geometric-tensor">Quantum Geometric Tensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="_generated/optim/netket.optimizer.qgt.QGTAuto.html">netket.optimizer.qgt.QGTAuto</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_generated/optim/netket.optimizer.qgt.QGTOnTheFly.html">netket.optimizer.qgt.QGTOnTheFly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_generated/optim/netket.optimizer.qgt.QGTJacobianPyTree.html">netket.optimizer.qgt.QGTJacobianPyTree</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_generated/optim/netket.optimizer.qgt.QGTJacobianDense.html">netket.optimizer.qgt.QGTJacobianDense</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#dense-solvers">Dense solvers</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="_generated/optim/netket.optimizer.solver.svd.html">netket.optimizer.solver.svd</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_generated/optim/netket.optimizer.solver.cholesky.html">netket.optimizer.solver.cholesky</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_generated/optim/netket.optimizer.solver.LU.html">netket.optimizer.solver.LU</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_generated/optim/netket.optimizer.solver.solve.html">netket.optimizer.solver.solve</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#optimization-drivers">Optimization drivers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="_generated/driver/netket.driver.AbstractVariationalDriver.html">netket.driver.AbstractVariationalDriver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_generated/driver/netket.driver.VMC.html">netket.driver.VMC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_generated/driver/netket.driver.SteadyState.html">netket.driver.SteadyState</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#logging-output">Logging output</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="_generated/driver/netket.logging.RuntimeLog.html">netket.logging.RuntimeLog</a></li>
 <li class="toctree-l3"><a class="reference internal" href="_generated/driver/netket.logging.JsonLog.html">netket.logging.JsonLog</a></li>
@@ -410,7 +442,7 @@ To give an example, we consider a variational ansatz <span class="math notransla
 However, what we really are interested in when optimizing variational ansätze is not the (Euclidean) distance between those two points in parameter space, but rather the distance in the Hilbert space between the corresponding quantum states (which also properly takes into account gauge degrees of freedom).
 The quantum mechanical distance function for quantum states is the Fubini-Study distance <span class="math notranslate nohighlight">\( d(\psi, \phi) = \cos^{-1} \sqrt{\frac{\langle\psi|\phi\rangle \langle\phi|\psi\rangle}{\langle\psi|\psi\rangle \langle\phi|\phi\rangle}} \)</span>.
 This can be expanded to second order in an infinitesimal parameter change <span class="math notranslate nohighlight">\(\delta W\)</span> as <span class="math notranslate nohighlight">\( d(\psi_W, \psi_{W + \delta W}) = (\delta W)^\dagger S \delta W \)</span> where <span class="math notranslate nohighlight">\( S \)</span> is the QGT.
-In NetKet you can obtain (an approximation of) the quantum geometric tensor of a variational state by calling <code class="xref py py-attr docutils literal notranslate"><span class="pre">quantum_geometric_tensor</span></code>.</p>
+In NetKet you can obtain (an approximation of) the quantum geometric tensor of a variational state by calling <a class="reference internal" href="_generated/variational/netket.vqs.VariationalState.html#netket.vqs.VariationalState.quantum_geometric_tensor" title="netket.vqs.VariationalState.quantum_geometric_tensor"><code class="xref py py-attr docutils literal notranslate"><span class="pre">quantum_geometric_tensor</span></code></a>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ma</span> <span class="o">=</span> <span class="n">nk</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">RBM</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
 <span class="n">sa</span> <span class="o">=</span> <span class="n">nk</span><span class="o">.</span><span class="n">sampler</span><span class="o">.</span><span class="n">MetropolisLocal</span><span class="p">(</span><span class="n">nk</span><span class="o">.</span><span class="n">hilbert</span><span class="o">.</span><span class="n">Spin</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">16</span><span class="p">),</span> <span class="n">n_chains</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
 <span class="n">vs</span> <span class="o">=</span> <span class="n">nk</span><span class="o">.</span><span class="n">vqs</span><span class="o">.</span><span class="n">MCState</span><span class="p">(</span><span class="n">sa</span><span class="p">,</span> <span class="n">ma</span><span class="p">)</span>
@@ -440,9 +472,9 @@ In NetKet you can obtain (an approximation of) the quantum geometric tensor of a
 <p>While mathematically those operations are all well defined, there are several ways to implement them in code, all with different performance characteristics. For that reason, we have several (3) different implementations of the same Quantum Geometric Tensor object.
 The 3 implemnentations are:</p>
 <ul class="simple">
-<li><p><span class="xref std std-ref">netket.optimizer.qgt.QGTOnTheFly</span>, which uses jax automatic differentiation through two <code class="docutils literal notranslate"><span class="pre">vjp</span></code> and one <code class="docutils literal notranslate"><span class="pre">jvp</span></code> product to compute the action of quantum geometric tensor on a vector and operates natively on PyTrees. This method will essentially run AD every time you compute <code class="docutils literal notranslate"><span class="pre">QGT&#64;vector</span></code>. This method shines if the parameters of your network are stored in a PyTree with few leaf nodes and/or you are not performing many iterations of the iterative solver. It can compute the full dense QGT but it is not efficient at doing it so we advise not to use it with dense solvers.</p></li>
-<li><p><span class="xref std std-ref">netket.optimizer.qgt.QGTJacobianDense</span>, which precomputes the log derivatives ( <span class="math notranslate nohighlight">\( O_k \)</span> ) when it’s constructed and converts it to a single dense array. If you have a high number of total parameters and/or many leaf nodes in your parameter PyTree, this implementation might perform better because everything is stored contiguously in memory. However, it has an high ‘startup cost’.</p></li>
-<li><p><span class="xref std std-ref">netket.optimizer.qgt.QGTJacobianPyTree</span>, same as above, but the precomputed jacobian is not stored contiguously in memory but is stored as a PyTree. This might work better than <code class="docutils literal notranslate"><span class="pre">QGTJacobianDense</span></code> if there are few leaf nodes. We haven’t studied the performance tradeoffs between the two Jacobian implementations and we would appreciate feedback.</p></li>
+<li><p><a class="reference internal" href="_generated/optim/netket.optimizer.qgt.QGTOnTheFly.html#netket-optimizer-qgt-qgtonthefly"><span class="std std-ref">netket.optimizer.qgt.QGTOnTheFly</span></a>, which uses jax automatic differentiation through two <code class="docutils literal notranslate"><span class="pre">vjp</span></code> and one <code class="docutils literal notranslate"><span class="pre">jvp</span></code> product to compute the action of quantum geometric tensor on a vector and operates natively on PyTrees. This method will essentially run AD every time you compute <code class="docutils literal notranslate"><span class="pre">QGT&#64;vector</span></code>. This method shines if the parameters of your network are stored in a PyTree with few leaf nodes and/or you are not performing many iterations of the iterative solver. It can compute the full dense QGT but it is not efficient at doing it so we advise not to use it with dense solvers.</p></li>
+<li><p><a class="reference internal" href="_generated/optim/netket.optimizer.qgt.QGTJacobianDense.html#netket-optimizer-qgt-qgtjacobiandense"><span class="std std-ref">netket.optimizer.qgt.QGTJacobianDense</span></a>, which precomputes the log derivatives ( <span class="math notranslate nohighlight">\( O_k \)</span> ) when it’s constructed and converts it to a single dense array. If you have a high number of total parameters and/or many leaf nodes in your parameter PyTree, this implementation might perform better because everything is stored contiguously in memory. However, it has an high ‘startup cost’.</p></li>
+<li><p><a class="reference internal" href="_generated/optim/netket.optimizer.qgt.QGTJacobianPyTree.html#netket-optimizer-qgt-qgtjacobianpytree"><span class="std std-ref">netket.optimizer.qgt.QGTJacobianPyTree</span></a>, same as above, but the precomputed jacobian is not stored contiguously in memory but is stored as a PyTree. This might work better than <code class="docutils literal notranslate"><span class="pre">QGTJacobianDense</span></code> if there are few leaf nodes. We haven’t studied the performance tradeoffs between the two Jacobian implementations and we would appreciate feedback.</p></li>
 </ul>
 <p>We also have an extra implementation, called <code class="docutils literal notranslate"><span class="pre">netket.optimizer.qgt.QGTAuto</span></code>, which uses some heuristics based on the parameters of the network to select the best QGT implementation. Be warned that the heuristics we use is very crude, and might not pick the best implementation all the time.</p>
 <p>All the QGT implementations listed above have several options that can affect their performance.
@@ -456,19 +488,19 @@ If you work with NetKet and determine that a particular implementation works bes
 The derivation in the case of a variational optimization for the ground state, can be sketched as follows:</p>
 <p>Given a a variational wavefunction <span class="math notranslate nohighlight">\( \ket{\psi_W} \)</span>, we consider its first order Taylor expansion around <span class="math notranslate nohighlight">\( W \)</span>, <span class="math notranslate nohighlight">\( \ket{\psi_{W+\delta W}} = \ket{\psi_W} + \delta W_k \hat{O}_k \ket{\psi_W} \)</span>, where <span class="math notranslate nohighlight">\( \bra{\sigma}\hat{O}_k \ket{\eta} = \delta_{\sigma,\eta} \frac{d \log\psi_W(\sigma)}{dW_k}\)</span>.
 We wish to determine the updates <span class="math notranslate nohighlight">\( \delta_{\sigma,\eta} \)</span> of the variational parameters that match a step of imaginary-time evolution, given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4c60277c-3ffa-4fe9-91d6-da1fdd0153d1">
-<span class="eqno">(1)<a class="headerlink" href="#equation-4c60277c-3ffa-4fe9-91d6-da1fdd0153d1" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c338ba19-284b-4549-b50f-186bf39f12a1">
+<span class="eqno">(1)<a class="headerlink" href="#equation-c338ba19-284b-4549-b50f-186bf39f12a1" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \ket{\phi} = U(\epsilon)\ket{\psi_W} = e^{\epsilon\hat{H}}\ket{\psi_W} \sim (\mathbb{I} - \epsilon \hat{H})\ket{\psi_W}
 \end{equation}\]</div>
 <p>It is possible to show that the updates <span class="math notranslate nohighlight">\(\delta W_k \)</span> that minimise the norm of the state <span class="math notranslate nohighlight">\(\ket{\phi}-\ket{\psi_{W+\delta W}}\)</span> can be determined by solving the linear system</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3bd81564-c90d-4b7c-a36f-b9f0e7e98f2a">
-<span class="eqno">(2)<a class="headerlink" href="#equation-3bd81564-c90d-4b7c-a36f-b9f0e7e98f2a" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b69a54ad-b77d-4ab7-b902-17beac6de0c6">
+<span class="eqno">(2)<a class="headerlink" href="#equation-b69a54ad-b77d-4ab7-b902-17beac6de0c6" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 S_{i,k} \delta W_k = F_i
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\( F_i = \langle \hat{E}^{loc} \hat{O}_i\rangle_c \)</span> is the gradient of the Energy and <span class="math notranslate nohighlight">\( S_{i,k} = \langle \hat{O}^\dagger_i \hat{O}_k\rangle_c \)</span> is the Quantum Geometric Tensor.
 The QGT is positive definite, therefore it can be inverted and the solution is formally written as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9b5e438b-7985-4812-828a-5afae32b55a2">
-<span class="eqno">(3)<a class="headerlink" href="#equation-9b5e438b-7985-4812-828a-5afae32b55a2" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-bae1fb92-5cc1-4d71-9534-b9c9ea25e6e6">
+<span class="eqno">(3)<a class="headerlink" href="#equation-bae1fb92-5cc1-4d71-9534-b9c9ea25e6e6" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \bf{\delta W} = S^{-1} \bf{F},
 \end{equation}\]</div>
 <p>where bold fonts are used for vectors.
