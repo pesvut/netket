@@ -116,11 +116,11 @@
 
 <span class="kn">from</span> <span class="nn">netket.utils.dispatch</span> <span class="kn">import</span> <span class="n">parametric</span>
 
-<span class="kn">from</span> <span class="nn">.abstract_hilbert</span> <span class="kn">import</span> <span class="n">AbstractHilbert</span>
+<span class="kn">from</span> <span class="nn">.discrete_hilbert</span> <span class="kn">import</span> <span class="n">DiscreteHilbert</span>
 
 
 <div class="viewcode-block" id="DoubledHilbert"><a class="viewcode-back" href="../../../docs/_generated/hilbert/netket.hilbert.DoubledHilbert.html#netket.hilbert.DoubledHilbert">[docs]</a><span class="nd">@parametric</span>
-<span class="k">class</span> <span class="nc">DoubledHilbert</span><span class="p">(</span><span class="n">AbstractHilbert</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">DoubledHilbert</span><span class="p">(</span><span class="n">DiscreteHilbert</span><span class="p">):</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Superoperatorial hilbert space for states living in the</span>
 <span class="sd">    tensorised state H\otimes H, encoded according to Choi&#39;s isomorphism.&quot;&quot;&quot;</span>
 
@@ -144,8 +144,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">physical</span> <span class="o">=</span> <span class="n">hilb</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_size</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">hilb</span><span class="o">.</span><span class="n">size</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_shape</span> <span class="o">=</span> <span class="n">hilb</span><span class="o">.</span><span class="n">shape</span> <span class="o">*</span> <span class="mi">2</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span></div>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="n">hilb</span><span class="o">.</span><span class="n">shape</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span></div>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -154,10 +153,6 @@
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">shape</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shape</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">is_discrete</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">physical</span><span class="o">.</span><span class="n">is_discrete</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">is_finite</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -263,7 +258,7 @@
     </p>
     <p>
         &copy; Copyright 2019-2021, The Netket authors - All rights reserved.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.0.2.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.0.3.<br/>
     </p>
   </div>
 </footer>
