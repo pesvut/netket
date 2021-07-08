@@ -385,49 +385,6 @@
     <span class="p">)</span>
 
 
-<span class="c1"># @dispatch</span>
-<span class="c1"># def expect_and_grad(</span>
-<span class="c1">#    vstate: VariationalState,</span>
-<span class="c1">#    operator: AbstractOperator,</span>
-<span class="c1">#    covariance_formula: Bool,</span>
-<span class="c1">#    *,</span>
-<span class="c1">#    mutable: Any = None,</span>
-<span class="c1"># ):</span>
-<span class="c1">#    r&quot;&quot;&quot;Estimates both the gradient of the quantum expectation value of a given operator O.</span>
-<span class="c1">#</span>
-<span class="c1">#    Args:</span>
-<span class="c1">#        vstate: The variational state</span>
-<span class="c1">#        Ô: the operator Ô for which we compute the expectation value and it&#39;s gradient</span>
-<span class="c1">#        covariance_formula: whever to use the covariance formula, usually reserved for</span>
-<span class="c1">#            hermitian operators.</span>
-<span class="c1">#        mutable: Can be bool, str, or list. Specifies which collections in the model_state should</span>
-<span class="c1">#                 be treated as  mutable: bool: all/no collections are mutable. str: The name of a</span>
-<span class="c1">#                 single mutable  collection. list: A list of names of mutable collections.</span>
-<span class="c1">#                 This is used to mutate the state of the model while you train it (for example</span>
-<span class="c1">#                 to implement BatchNorm. Consult</span>
-<span class="c1">#                 `Flax&#39;s Module.apply documentation &lt;https://flax.readthedocs.io/en/latest/_modules/flax/linen/module.html#Module.apply&gt;`_</span>
-<span class="c1">#                 for a more in-depth exaplanation).</span>
-<span class="c1">#</span>
-<span class="c1">#    Returns:</span>
-<span class="c1">#        An estimation of the quantum expectation value &lt;O&gt;.</span>
-<span class="c1">#        An estimation of the average gradient of the quantum expectation value &lt;O&gt;.</span>
-<span class="c1">#    &quot;&quot;&quot;</span>
-<span class="c1">#    raise NotImplementedError(</span>
-<span class="c1">#        dedent(</span>
-<span class="c1">#            &quot;&quot;&quot;</span>
-<span class="c1">#            To implement vstate.expect for a custom operator, implement</span>
-<span class="c1">#            the multiple-dispatch (plum-dispatc) based method according</span>
-<span class="c1">#</span>
-<span class="c1">#            @nk.vqs.expect.register</span>
-<span class="c1">#            expect_and_grad(vstate : {type(vstate)}, operator: {type(operator)}, covariance_formula: bool, *, mutable=None):</span>
-<span class="c1">#                return ...</span>
-<span class="c1">#</span>
-<span class="c1">#            which uses multiple dispatch to select the correct function.</span>
-<span class="c1">#            &quot;&quot;&quot;</span>
-<span class="c1">#        )</span>
-<span class="c1">#    )</span>
-
-
 <span class="c1"># default dispatch where covariance_formula is not specified</span>
 <span class="nd">@dispatch</span>
 <span class="k">def</span> <span class="nf">expect_and_grad</span><span class="p">(</span>  <span class="c1"># noqa: F811</span>
@@ -444,8 +401,10 @@
     <span class="k">if</span> <span class="n">covariance_formula</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">covariance_formula</span> <span class="o">=</span> <span class="n">TrueT</span><span class="p">()</span> <span class="k">if</span> <span class="n">operator</span><span class="o">.</span><span class="n">is_hermitian</span> <span class="k">else</span> <span class="n">FalseT</span><span class="p">()</span>
 
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;covariance formula is: </span><span class="si">{</span><span class="n">covariance_formula</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">covariance_formula</span><span class="p">)</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">expect_and_grad</span><span class="p">(</span><span class="n">vstate</span><span class="p">,</span> <span class="n">operator</span><span class="p">,</span> <span class="n">covariance_formula</span><span class="p">,</span> <span class="n">mutable</span><span class="o">=</span><span class="n">mutable</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">mutable</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">mutable</span> <span class="o">=</span> <span class="n">vstate</span><span class="o">.</span><span class="n">mutable</span>
+
+    <span class="k">return</span> <span class="n">expect_and_grad</span><span class="p">(</span><span class="n">vstate</span><span class="p">,</span> <span class="n">operator</span><span class="p">,</span> <span class="n">covariance_formula</span><span class="p">,</span> <span class="n">mutable</span><span class="p">)</span>
 </pre></div>
 
     </div>
