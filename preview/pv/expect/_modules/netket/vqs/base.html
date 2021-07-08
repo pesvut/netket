@@ -444,10 +444,8 @@
     <span class="k">if</span> <span class="n">covariance_formula</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">covariance_formula</span> <span class="o">=</span> <span class="n">TrueT</span><span class="p">()</span> <span class="k">if</span> <span class="n">operator</span><span class="o">.</span><span class="n">is_hermitian</span> <span class="k">else</span> <span class="n">FalseT</span><span class="p">()</span>
 
-    <span class="k">if</span> <span class="n">mutable</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">mutable</span> <span class="o">=</span> <span class="n">vstate</span><span class="o">.</span><span class="n">mutable</span>
-
-    <span class="k">return</span> <span class="n">expect_and_grad</span><span class="p">(</span><span class="n">vstate</span><span class="p">,</span> <span class="n">operator</span><span class="p">,</span> <span class="n">covariance_formula</span><span class="p">,</span> <span class="n">mutable</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;covariance formula is: </span><span class="si">{</span><span class="n">covariance_formula</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">covariance_formula</span><span class="p">)</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">expect_and_grad</span><span class="p">(</span><span class="n">vstate</span><span class="p">,</span> <span class="n">operator</span><span class="p">,</span> <span class="n">covariance_formula</span><span class="p">,</span> <span class="n">mutable</span><span class="o">=</span><span class="n">mutable</span><span class="p">)</span>
 </pre></div>
 
     </div>
