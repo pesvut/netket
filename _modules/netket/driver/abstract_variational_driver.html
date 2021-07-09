@@ -367,14 +367,14 @@
                     <span class="k">if</span> <span class="n">mpi</span><span class="o">.</span><span class="n">mpi_any</span><span class="p">(</span><span class="n">callback_stop</span><span class="p">):</span>
                         <span class="k">break</span>
 
-                <span class="c1"># Update the progress bar</span>
-                <span class="n">pbar</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">step_count</span> <span class="o">-</span> <span class="n">old_step</span><span class="p">)</span>
-                <span class="n">old_step</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">step_count</span>
-
                 <span class="c1"># Reset the timing of tqdm after the first step, to ignore compilation time</span>
                 <span class="k">if</span> <span class="n">first_step</span><span class="p">:</span>
                     <span class="n">first_step</span> <span class="o">=</span> <span class="kc">False</span>
                     <span class="n">pbar</span><span class="o">.</span><span class="n">unpause</span><span class="p">()</span>
+
+                <span class="c1"># Update the progress bar</span>
+                <span class="n">pbar</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">step_count</span> <span class="o">-</span> <span class="n">old_step</span><span class="p">)</span>
+                <span class="n">old_step</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">step_count</span>
 
             <span class="c1"># Final update so that it shows up filled.</span>
             <span class="n">pbar</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">step_count</span> <span class="o">-</span> <span class="n">old_step</span><span class="p">)</span>
