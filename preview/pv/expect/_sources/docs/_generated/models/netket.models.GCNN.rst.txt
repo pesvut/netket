@@ -1,0 +1,6 @@
+﻿netket.models.GCNN
+==================
+
+.. currentmodule:: netket.models
+
+.. autofunction:: GCNN
