@@ -6,9 +6,11 @@
 .. autoclass:: MCMixedState
    :show-inheritance:
 
-   .. automethod:: MCMixedState.__init__
 
    
+   
+
+   .. automethod:: MCMixedState.__init__
       
    .. rst-class:: class-dl-groups
 

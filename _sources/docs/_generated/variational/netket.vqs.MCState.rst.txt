@@ -6,9 +6,11 @@
 .. autoclass:: MCState
    :show-inheritance:
 
-   .. automethod:: MCState.__init__
 
    
+   
+
+   .. automethod:: MCState.__init__
       
    .. rst-class:: class-dl-groups
 
