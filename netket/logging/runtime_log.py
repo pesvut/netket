@@ -46,3 +46,6 @@ class RuntimeLog:
 
     def flush(self, variational_state):
         pass
+
+    def __repr__(self):
+        return f"RuntimeLog(data=\n {self.data})"

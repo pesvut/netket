@@ -213,4 +213,6 @@ class JsonLog(RuntimeLog):
         _str = _str + "\n  Runtime cost:"
         _str = _str + f"\n  \tLog:    {self._flush_log_time}"
         _str = _str + f"\n  \tParams: {self._flush_pars_time}"
+        _str = _str + "\n  Logged data:"
+        _str = _str + f"\n   {self._data})"
         return _str
