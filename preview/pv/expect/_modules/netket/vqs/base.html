@@ -244,7 +244,7 @@
         <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Resets the internal cache of th variational state.</span>
 <span class="sd">        Called automatically when the parameters/state is updated.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">pass</span></div>
+        <span class="k">pass</span>  <span class="c1"># pragma: no cover</span></div>
 
 <div class="viewcode-block" id="VariationalState.expect"><a class="viewcode-back" href="../../../docs/_generated/variational/netket.vqs.VariationalState.html#netket.vqs.VariationalState.expect">[docs]</a>    <span class="k">def</span> <span class="nf">expect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Ô</span><span class="p">:</span> <span class="n">AbstractOperator</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Stats</span><span class="p">:</span>
         <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Estimates the quantum expectation value for a given operator O.</span>
@@ -317,7 +317,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            nk.optimizer.LinearOperator: A linear operator representing the quantum geometric tensor.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>  <span class="c1"># pragma: no cover</span></div>
 
 <div class="viewcode-block" id="VariationalState.to_array"><a class="viewcode-back" href="../../../docs/_generated/variational/netket.vqs.VariationalState.html#netket.vqs.VariationalState.to_array">[docs]</a>    <span class="k">def</span> <span class="nf">to_array</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">normalize</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -330,7 +330,7 @@
 <span class="sd">            An exponentially large vector representing the state in the computational</span>
 <span class="sd">            basis.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">NotImplemented</span></div></div>
+        <span class="k">return</span> <span class="bp">NotImplemented</span>  <span class="c1"># pragma: no cover</span></div></div>
 
 
 <span class="k">class</span> <span class="nc">VariationalMixedState</span><span class="p">(</span><span class="n">VariationalState</span><span class="p">):</span>
@@ -353,7 +353,7 @@
 <span class="sd">            An exponentially large matrix representing the state in the computational</span>
 <span class="sd">            basis.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">NotImplemented</span>
+        <span class="k">return</span> <span class="bp">NotImplemented</span>  <span class="c1"># pragma: no cover</span>
 
 
 <span class="nd">@dispatch</span><span class="o">.</span><span class="n">abstract</span>
@@ -379,7 +379,7 @@
 <span class="sd">    Returns:</span>
 <span class="sd">        The expectation value wrapped in a `Stats` object.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span>
+    <span class="k">pass</span>  <span class="c1"># pragma: no cover</span>
 
 
 <span class="c1"># default dispatch where use_covariance is not specified</span>
