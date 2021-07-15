@@ -206,13 +206,21 @@
 <li class="toctree-l2"><a class="reference internal" href="../../custom_models.html#using-haiku">Using Haiku</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../custom_preconditioners.html">The preconditioner interface</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../custom_preconditioners.html#the-linearpreconditioner-interface">The LinearPreconditioner interface</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../custom_preconditioners.html#bare-interface">Bare interface</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../custom_preconditioners.html#linearoperator-interface">LinearOperator interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../custom_preconditioners.html">Defining Custom Preconditioners</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../custom_preconditioners.html#the-preconditioner-interface">The preconditioner interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../custom_preconditioners.html#the-linearpreconditioner-interface">The LinearPreconditioner interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../custom_preconditioners.html#bare-interface">Bare interface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../custom_preconditioners.html#linearoperator-interface">LinearOperator interface</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../custom_preconditioners.html#the-preconditioner-function-api">The preconditioner function API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../custom_preconditioners.html#the-preconditioner-function-api">The preconditioner function API</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../custom_expect.html">Overriding behaviour and defining custom operators</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../custom_expect.html#netket-architecture-multiple-dispatch">NetKet Architecture: Multiple Dispatch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../custom_expect.html#defining-custom-implementations-for-expectation-values">Defining custom implementations for expectation values</a></li>
 </ul>
 </li>
 </ul>
@@ -754,22 +762,23 @@ otherwise for a mixed state $rho$, this is $&lt;O&gt; = Tr[rho hat{O}/Tr[rho]$.<
 
 <dl class="py method">
 <dt id="netket.vqs.MCMixedState.expect_and_grad">
-<code class="sig-name descname"><span class="pre">expect_and_grad</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Ô</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mutable</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_hermitian</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#netket.vqs.MCMixedState.expect_and_grad" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">expect_and_grad</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Ô</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mutable</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_covariance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#netket.vqs.MCMixedState.expect_and_grad" title="Permalink to this definition">¶</a></dt>
 <dd><p>Estimates both the gradient of the quantum expectation value of a given operator O.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>Ô</strong> – the operator Ô for which we compute the expectation value and it’s gradient</p></li>
-<li><p><strong>mutable</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>]) – Can be bool, str, or list. Specifies which collections in the model_state should
+<li><p><strong>mutable</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]) – Can be bool, str, or list. Specifies which collections in the model_state should
 be treated as  mutable: bool: all/no collections are mutable. str: The name of a
 single mutable  collection. list: A list of names of mutable collections.
 This is used to mutate the state of the model while you train it (for example
 to implement BatchNorm. Consult
 <a class="reference external" href="https://flax.readthedocs.io/en/latest/_modules/flax/linen/module.html#Module.apply">Flax’s Module.apply documentation</a>
 for a more in-depth exaplanation).</p></li>
-<li><p><strong>is_hermitian</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>]) – optional override for whever to use or not the hermitian logic. By default
+<li><p><strong>is_hermitian</strong> – optional override for whever to use or not the hermitian logic. By default
 it’s automatically detected.</p></li>
 <li><p><strong>Ô</strong> (<em>netket.operator._abstract_operator.AbstractOperator</em>) – </p></li>
+<li><p><strong>use_covariance</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a><em>]</em>) – </p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type</dt>
@@ -796,19 +805,6 @@ An estimation of the average gradient of the quantum expectation value &lt;O&gt;
 </dd></dl>
 
 <dl class="py method">
-<dt id="netket.vqs.MCMixedState.expect_operator">
-<code class="sig-name descname"><span class="pre">expect_operator</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Ô</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/netket/vqs/mc_mixed_state.html#MCMixedState.expect_operator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#netket.vqs.MCMixedState.expect_operator" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Stats</span></code></p>
-</dd>
-<dt class="field-even">Parameters</dt>
-<dd class="field-even"><p><strong>Ô</strong> (<em>netket.operator._abstract_operator.AbstractOperator</em>) – </p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
 <dt id="netket.vqs.MCMixedState.grad">
 <code class="sig-name descname"><span class="pre">grad</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Ô</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_hermitian</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mutable</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#netket.vqs.MCMixedState.grad" title="Permalink to this definition">¶</a></dt>
 <dd><p>Estimates the gradient of the quantum expectation value of a given operator O.</p>
@@ -826,19 +822,6 @@ it’s automatically detected.</p></li>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>array</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="netket.vqs.MCMixedState.grad_operator">
-<code class="sig-name descname"><span class="pre">grad_operator</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Ô</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#netket.vqs.MCMixedState.grad_operator" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Stats</span></code></p>
-</dd>
-<dt class="field-even">Parameters</dt>
-<dd class="field-even"><p><strong>Ô</strong> (<em>netket.operator._abstract_operator.AbstractOperator</em>) – </p>
 </dd>
 </dl>
 </dd></dl>

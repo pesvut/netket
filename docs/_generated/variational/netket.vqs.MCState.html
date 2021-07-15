@@ -206,13 +206,21 @@
 <li class="toctree-l2"><a class="reference internal" href="../../custom_models.html#using-haiku">Using Haiku</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../custom_preconditioners.html">The preconditioner interface</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../custom_preconditioners.html#the-linearpreconditioner-interface">The LinearPreconditioner interface</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../custom_preconditioners.html#bare-interface">Bare interface</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../custom_preconditioners.html#linearoperator-interface">LinearOperator interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../custom_preconditioners.html">Defining Custom Preconditioners</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../custom_preconditioners.html#the-preconditioner-interface">The preconditioner interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../custom_preconditioners.html#the-linearpreconditioner-interface">The LinearPreconditioner interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../custom_preconditioners.html#bare-interface">Bare interface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../custom_preconditioners.html#linearoperator-interface">LinearOperator interface</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../custom_preconditioners.html#the-preconditioner-function-api">The preconditioner function API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../custom_preconditioners.html#the-preconditioner-function-api">The preconditioner function API</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../custom_expect.html">Overriding behaviour and defining custom operators</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../custom_expect.html#netket-architecture-multiple-dispatch">NetKet Architecture: Multiple Dispatch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../custom_expect.html#defining-custom-implementations-for-expectation-values">Defining custom implementations for expectation values</a></li>
 </ul>
 </li>
 </ul>
@@ -471,13 +479,13 @@ during evaluation, but that should not be optimised. See also flax.linen.module.
 <li><p><strong>init_fun</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Callable" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code></a>[[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Sequence" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>], <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>], <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.21)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a>, <a class="reference external" href="https://jax.readthedocs.io/en/latest/jax.numpy.html#jaxlib.xla_extension.DeviceArray" title="(in JAX)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DeviceArray</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Tracer</span></code>]]]) – Function of the signature f(model, shape, rng_key, dtype) -&gt; Optional_state, parameters used to
 initialise the parameters. Defaults to the standard flax initialiser. Only specify if your network has
 a non-standard init method.</p></li>
+<li><p><strong>variables</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]) – Optional initial value for the variables (parameters and model state) of the model.</p></li>
 <li><p><strong>apply_fun</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Callable" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code></a>]) – Function of the signature f(model, variables, σ) that should evaluate the model. Defafults to
 <cite>model.apply(variables, σ)</cite>. specify only if your network has a non-standard apply method.</p></li>
+<li><p><strong>sample_fun</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Callable" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code></a>]) – Optional function used to sample the state, if it is not the same as <cite>apply_fun</cite>.</p></li>
 <li><p><strong>training_kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>) – a dict containing the optionaal keyword arguments to be passed to the apply_fun during training.
 Useful for example when you have a batchnorm layer that constructs the average/mean only during training.</p></li>
-<li><p><strong>n_discard</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>]</em>) – </p></li>
-<li><p><strong>variables</strong> (<em>Optional</em><em>[</em><em>Any</em><em>]</em>) – </p></li>
-<li><p><strong>sample_fun</strong> (<em>Optional</em><em>[</em><em>Callable</em><em>]</em>) – </p></li>
+<li><p><strong>n_discard</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]) – DEPRECATED. Please use <cite>n_discard_per_chain</cite> which has the same behaviour.</p></li>
 </ul>
 </dd>
 </dl>
@@ -646,7 +654,7 @@ used when evaluating it.</p>
 
 <dl class="py method">
 <dt id="netket.vqs.MCState.expect">
-<code class="sig-name descname"><span class="pre">expect</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Ô</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/netket/vqs/mc_state.html#MCState.expect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#netket.vqs.MCState.expect" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">expect</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Ô</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#netket.vqs.MCState.expect" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="simple">
 <dt>Estimates the quantum expectation value for a given operator O.</dt><dd><p>In the case of a pure state $psi$, this is $&lt;O&gt;= &lt;Psi|O|Psi&gt;/&lt;Psi|Psi&gt;$
 otherwise for a mixed state $rho$, this is $&lt;O&gt; = Tr[rho hat{O}/Tr[rho]$.</p>
@@ -670,13 +678,13 @@ otherwise for a mixed state $rho$, this is $&lt;O&gt; = Tr[rho hat{O}/Tr[rho]$.<
 
 <dl class="py method">
 <dt id="netket.vqs.MCState.expect_and_grad">
-<code class="sig-name descname"><span class="pre">expect_and_grad</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Ô</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mutable</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_hermitian</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/netket/vqs/mc_state.html#MCState.expect_and_grad"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#netket.vqs.MCState.expect_and_grad" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">expect_and_grad</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Ô</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mutable</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_covariance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#netket.vqs.MCState.expect_and_grad" title="Permalink to this definition">¶</a></dt>
 <dd><p>Estimates both the gradient of the quantum expectation value of a given operator O.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>Ô</strong> – the operator Ô for which we compute the expectation value and it’s gradient</p></li>
-<li><p><strong>mutable</strong> – Can be bool, str, or list. Specifies which collections in the model_state should
+<li><p><strong>mutable</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]) – Can be bool, str, or list. Specifies which collections in the model_state should
 be treated as  mutable: bool: all/no collections are mutable. str: The name of a
 single mutable  collection. list: A list of names of mutable collections.
 This is used to mutate the state of the model while you train it (for example
@@ -686,6 +694,7 @@ for a more in-depth exaplanation).</p></li>
 <li><p><strong>is_hermitian</strong> – optional override for whever to use or not the hermitian logic. By default
 it’s automatically detected.</p></li>
 <li><p><strong>Ô</strong> (<em>netket.operator._abstract_operator.AbstractOperator</em>) – </p></li>
+<li><p><strong>use_covariance</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a><em>]</em>) – </p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type</dt>
