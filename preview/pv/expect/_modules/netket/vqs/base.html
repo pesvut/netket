@@ -356,7 +356,7 @@
         <span class="k">return</span> <span class="bp">NotImplemented</span>  <span class="c1"># pragma: no cover</span>
 
 
-<span class="nd">@dispatch</span><span class="o">.</span><span class="n">abstract</span>
+<div class="viewcode-block" id="expect"><a class="viewcode-back" href="../../../docs/custom_expect.html#netket.vqs.expect">[docs]</a><span class="nd">@dispatch</span><span class="o">.</span><span class="n">abstract</span>
 <span class="k">def</span> <span class="nf">expect</span><span class="p">(</span><span class="n">vstate</span><span class="p">:</span> <span class="n">VariationalState</span><span class="p">,</span> <span class="n">operator</span><span class="p">:</span> <span class="n">AbstractOperator</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Computes the expectation value of the given operator over the</span>
@@ -379,11 +379,11 @@
 <span class="sd">    Returns:</span>
 <span class="sd">        The expectation value wrapped in a `Stats` object.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span>  <span class="c1"># pragma: no cover</span>
+    <span class="k">pass</span>  <span class="c1"># pragma: no cover</span></div>
 
 
 <span class="c1"># default dispatch where use_covariance is not specified</span>
-<span class="nd">@dispatch</span>
+<div class="viewcode-block" id="expect_and_grad"><a class="viewcode-back" href="../../../docs/custom_expect.html#netket.vqs.expect_and_grad">[docs]</a><span class="nd">@dispatch</span>
 <span class="k">def</span> <span class="nf">expect_and_grad</span><span class="p">(</span>
     <span class="n">vstate</span><span class="p">:</span> <span class="n">VariationalState</span><span class="p">,</span>
     <span class="n">operator</span><span class="p">:</span> <span class="n">AbstractOperator</span><span class="p">,</span>
@@ -432,7 +432,7 @@
     <span class="k">if</span> <span class="n">mutable</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">mutable</span> <span class="o">=</span> <span class="n">vstate</span><span class="o">.</span><span class="n">mutable</span>
 
-    <span class="k">return</span> <span class="n">expect_and_grad</span><span class="p">(</span><span class="n">vstate</span><span class="p">,</span> <span class="n">operator</span><span class="p">,</span> <span class="n">use_covariance</span><span class="p">,</span> <span class="n">mutable</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">expect_and_grad</span><span class="p">(</span><span class="n">vstate</span><span class="p">,</span> <span class="n">operator</span><span class="p">,</span> <span class="n">use_covariance</span><span class="p">,</span> <span class="n">mutable</span><span class="p">)</span></div>
 </pre></div>
 
     </div>

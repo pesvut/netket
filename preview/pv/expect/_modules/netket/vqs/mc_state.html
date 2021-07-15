@@ -217,10 +217,13 @@
 <span class="sd">            init_fun: Function of the signature f(model, shape, rng_key, dtype) -&gt; Optional_state, parameters used to</span>
 <span class="sd">                initialise the parameters. Defaults to the standard flax initialiser. Only specify if your network has</span>
 <span class="sd">                a non-standard init method.</span>
+<span class="sd">            variables: Optional initial value for the variables (parameters and model state) of the model.</span>
 <span class="sd">            apply_fun: Function of the signature f(model, variables, σ) that should evaluate the model. Defafults to</span>
 <span class="sd">                `model.apply(variables, σ)`. specify only if your network has a non-standard apply method.</span>
+<span class="sd">            sample_fun: Optional function used to sample the state, if it is not the same as `apply_fun`.</span>
 <span class="sd">            training_kwargs: a dict containing the optionaal keyword arguments to be passed to the apply_fun during training.</span>
 <span class="sd">                Useful for example when you have a batchnorm layer that constructs the average/mean only during training.</span>
+<span class="sd">            n_discard: DEPRECATED. Please use `n_discard_per_chain` which has the same behaviour.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">sampler</span><span class="o">.</span><span class="n">hilbert</span><span class="p">)</span>
 

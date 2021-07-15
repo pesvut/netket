@@ -206,13 +206,21 @@
 <li class="toctree-l2"><a class="reference internal" href="custom_models.html#using-haiku">Using Haiku</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="custom_preconditioners.html">The preconditioner interface</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="custom_preconditioners.html#the-linearpreconditioner-interface">The LinearPreconditioner interface</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="custom_preconditioners.html#bare-interface">Bare interface</a></li>
-<li class="toctree-l3"><a class="reference internal" href="custom_preconditioners.html#linearoperator-interface">LinearOperator interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_preconditioners.html">Defining Custom Preconditioners</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="custom_preconditioners.html#the-preconditioner-interface">The preconditioner interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="custom_preconditioners.html#the-linearpreconditioner-interface">The LinearPreconditioner interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="custom_preconditioners.html#bare-interface">Bare interface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="custom_preconditioners.html#linearoperator-interface">LinearOperator interface</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="custom_preconditioners.html#the-preconditioner-function-api">The preconditioner function API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="custom_preconditioners.html#the-preconditioner-function-api">The preconditioner function API</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="custom_expect.html">Overriding behaviour and defining custom operators</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="custom_expect.html#netket-architecture-multiple-dispatch">NetKet Architecture: Multiple Dispatch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="custom_expect.html#defining-custom-implementations-for-expectation-values">Defining custom implementations for expectation values</a></li>
 </ul>
 </li>
 </ul>
@@ -495,19 +503,19 @@ If you work with NetKet and determine that a particular implementation works bes
 The derivation in the case of a variational optimization for the ground state, can be sketched as follows:</p>
 <p>Given a a variational wavefunction <span class="math notranslate nohighlight">\( \ket{\psi_W} \)</span>, we consider its first order Taylor expansion around <span class="math notranslate nohighlight">\( W \)</span>, <span class="math notranslate nohighlight">\( \ket{\psi_{W+\delta W}} = \ket{\psi_W} + \delta W_k \hat{O}_k \ket{\psi_W} \)</span>, where <span class="math notranslate nohighlight">\( \bra{\sigma}\hat{O}_k \ket{\eta} = \delta_{\sigma,\eta} \frac{d \log\psi_W(\sigma)}{dW_k}\)</span>.
 We wish to determine the updates <span class="math notranslate nohighlight">\( \delta_{\sigma,\eta} \)</span> of the variational parameters that match a step of imaginary-time evolution, given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-810e123b-0a19-41eb-8bb0-104529a43547">
-<span class="eqno">(1)<a class="headerlink" href="#equation-810e123b-0a19-41eb-8bb0-104529a43547" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9ac4091c-c9ec-42bf-84cb-0d1b7c6acd2d">
+<span class="eqno">(1)<a class="headerlink" href="#equation-9ac4091c-c9ec-42bf-84cb-0d1b7c6acd2d" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \ket{\phi} = U(\epsilon)\ket{\psi_W} = e^{\epsilon\hat{H}}\ket{\psi_W} \sim (\mathbb{I} - \epsilon \hat{H})\ket{\psi_W}
 \end{equation}\]</div>
 <p>It is possible to show that the updates <span class="math notranslate nohighlight">\(\delta W_k \)</span> that minimise the norm of the state <span class="math notranslate nohighlight">\(\ket{\phi}-\ket{\psi_{W+\delta W}}\)</span> can be determined by solving the linear system</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7e74e81c-c2d0-413a-9a0f-fc8f10bbd1a2">
-<span class="eqno">(2)<a class="headerlink" href="#equation-7e74e81c-c2d0-413a-9a0f-fc8f10bbd1a2" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-675bc16d-8543-470f-b7b4-a8aa3ba01f19">
+<span class="eqno">(2)<a class="headerlink" href="#equation-675bc16d-8543-470f-b7b4-a8aa3ba01f19" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 S_{i,k} \delta W_k = F_i
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\( F_i = \langle \hat{E}^{loc} \hat{O}_i\rangle_c \)</span> is the gradient of the Energy and <span class="math notranslate nohighlight">\( S_{i,k} = \langle \hat{O}^\dagger_i \hat{O}_k\rangle_c \)</span> is the Quantum Geometric Tensor.
 The QGT is positive definite, therefore it can be inverted and the solution is formally written as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4c67bb53-d61b-4f71-94d2-393caf166653">
-<span class="eqno">(3)<a class="headerlink" href="#equation-4c67bb53-d61b-4f71-94d2-393caf166653" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-1f7e4c0d-6da5-4ca3-ba8b-d6c676d37d11">
+<span class="eqno">(3)<a class="headerlink" href="#equation-1f7e4c0d-6da5-4ca3-ba8b-d6c676d37d11" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \bf{\delta W} = S^{-1} \bf{F},
 \end{equation}\]</div>
 <p>where bold fonts are used for vectors.
