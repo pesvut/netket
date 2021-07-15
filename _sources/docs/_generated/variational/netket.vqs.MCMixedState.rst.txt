@@ -20,6 +20,7 @@
       .. autoattribute:: MCMixedState.diagonal
       .. autoattribute:: MCMixedState.hilbert
       .. autoattribute:: MCMixedState.hilbert_physical
+      .. autoattribute:: MCMixedState.model
       .. autoattribute:: MCMixedState.model_state
       .. autoattribute:: MCMixedState.n_discard
       .. autoattribute:: MCMixedState.n_discard_diag

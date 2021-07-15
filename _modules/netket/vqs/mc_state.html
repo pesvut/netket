@@ -112,7 +112,7 @@
 
 <span class="kn">import</span> <span class="nn">warnings</span>
 <span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Dict</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
@@ -235,7 +235,7 @@
             <span class="c1"># model and model2 will have the same hash.</span>
             <span class="n">_</span><span class="p">,</span> <span class="n">model</span> <span class="o">=</span> <span class="n">maybe_wrap_module</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
 
-            <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_model</span> <span class="o">=</span> <span class="n">model</span>
 
             <span class="bp">self</span><span class="o">.</span><span class="n">_init_fun</span> <span class="o">=</span> <span class="n">nkjax</span><span class="o">.</span><span class="n">HashablePartial</span><span class="p">(</span>
                 <span class="k">lambda</span> <span class="n">model</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">model</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">),</span> <span class="n">model</span>
@@ -254,7 +254,7 @@
                     <span class="s2">&quot;If you don&#39;t provide variables, you must pass a valid init_fun.&quot;</span>
                 <span class="p">)</span>
 
-            <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">wrap_afun</span><span class="p">(</span><span class="n">apply_fun</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_model</span> <span class="o">=</span> <span class="n">wrap_afun</span><span class="p">(</span><span class="n">apply_fun</span><span class="p">)</span>
 
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
@@ -329,6 +329,15 @@
 
         <span class="n">variables</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_init_fun</span><span class="p">({</span><span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="n">key</span><span class="p">},</span> <span class="n">dummy_input</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">variables</span> <span class="o">=</span> <span class="n">variables</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">model</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Returns the model definition of this variational state.</span>
+
+<span class="sd">        This field is optional, and is set to `None` if the variational state has</span>
+<span class="sd">        been initialized using a custom function.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_model</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">sampler</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Sampler</span><span class="p">:</span>

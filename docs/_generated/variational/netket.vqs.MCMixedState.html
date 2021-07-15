@@ -550,6 +550,19 @@ on which this variational state is defined.</p>
 </dd></dl>
 
 <dl class="py attribute">
+<dt id="netket.vqs.MCMixedState.model">
+<code class="sig-name descname"><span class="pre">model</span></code><a class="headerlink" href="#netket.vqs.MCMixedState.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the model definition of this variational state.</p>
+<p>This field is optional, and is set to <cite>None</cite> if the variational state has
+been initialized using a custom function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
 <dt id="netket.vqs.MCMixedState.model_state">
 <code class="sig-name descname"><span class="pre">model_state</span></code><em class="property"><span class="pre">:</span> <span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#netket.vqs.MCMixedState.model_state" title="Permalink to this definition">¶</a></dt>
 <dd><p>An Optional PyTree encoding a mutable state of the model that is not trained.</p>
