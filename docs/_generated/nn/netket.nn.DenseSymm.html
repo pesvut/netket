@@ -454,6 +454,9 @@
 <dd><p>Implements a projection onto a symmetry group. The output will be
 equivariant with respect to the symmetry operations in the group and can
 be averaged to produce an invariant model.</p>
+<p>Note: The output shape has changed to seperate the feature and symmetry
+dimensions. The previous shape was [num_samples, num_symm*features] and
+the new shape is [num_samples, num_symm, features]</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
