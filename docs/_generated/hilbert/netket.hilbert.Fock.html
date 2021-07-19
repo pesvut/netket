@@ -664,7 +664,7 @@ might be different from the starting one.</p>
 
 <dl class="py method">
 <dt id="netket.hilbert.Fock.random_state">
-<code class="sig-name descname"><span class="pre">random_state</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">key=&lt;netket.hilbert.abstract_hilbert.NoneTypeT</span> <span class="pre">object&gt;</span></em>, <em class="sig-param"><span class="pre">size=&lt;netket.hilbert.abstract_hilbert.NoneTypeT</span> <span class="pre">object&gt;</span></em>, <em class="sig-param"><span class="pre">dtype=&lt;class</span> <span class="pre">'numpy.float32'&gt;</span></em>, <em class="sig-param"><span class="pre">out=None</span></em>, <em class="sig-param"><span class="pre">rgen=None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#netket.hilbert.Fock.random_state" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">random_state</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">key=None</span></em>, <em class="sig-param"><span class="pre">size=None</span></em>, <em class="sig-param"><span class="pre">dtype=&lt;class</span> <span class="pre">'numpy.float32'&gt;</span></em><span class="sig-paren">)</span><a class="headerlink" href="#netket.hilbert.Fock.random_state" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generates either a single or a batch of uniformly distributed random states.
 Runs as <code class="code docutils literal notranslate"><span class="pre">random_state(self,</span> <span class="pre">key,</span> <span class="pre">size=None,</span> <span class="pre">dtype=np.float32)</span></code> by default.</p>
 <dl class="field-list simple">
@@ -677,8 +677,6 @@ a tuple and where <span class="math notranslate nohighlight">\(N\)</span> is the
 By default, a single random configuration with shape
 <code class="code docutils literal notranslate"><span class="pre">(#,)</span></code> is returned.</p></li>
 <li><p><strong>dtype</strong> – DType of the resulting vector.</p></li>
-<li><p><strong>out</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.21)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a>]) – Deprecated. Will be removed in v3.1</p></li>
-<li><p><strong>rgen</strong> – Deprecated. Will be removed in v3.1</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type</dt>

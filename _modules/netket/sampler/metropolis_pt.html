@@ -122,16 +122,6 @@
 <span class="kn">from</span> <span class="nn">netket.utils.types</span> <span class="kn">import</span> <span class="n">PyTree</span><span class="p">,</span> <span class="n">PRNGKeyT</span>
 <span class="kn">from</span> <span class="nn">netket.utils</span> <span class="kn">import</span> <span class="n">struct</span>
 
-<span class="c1"># for deprecations</span>
-<span class="kn">from</span> <span class="nn">netket.utils</span> <span class="kn">import</span> <span class="n">wraps_legacy</span>
-<span class="kn">from</span> <span class="nn">netket.legacy.machine</span> <span class="kn">import</span> <span class="n">AbstractMachine</span>
-<span class="kn">from</span> <span class="nn">netket.legacy.sampler</span> <span class="kn">import</span> <span class="p">(</span>
-    <span class="n">MetropolisLocalPt</span> <span class="k">as</span> <span class="n">LegacyMetropolisLocalPt</span><span class="p">,</span>
-    <span class="n">MetropolisExchangePt</span> <span class="k">as</span> <span class="n">LegacyMetropolisExchangePt</span><span class="p">,</span>
-    <span class="n">MetropolisHamiltonianPt</span> <span class="k">as</span> <span class="n">LegacyMetropolisHamiltonianPt</span><span class="p">,</span>
-<span class="p">)</span>
-
-
 <span class="kn">from</span> <span class="nn">.metropolis</span> <span class="kn">import</span> <span class="n">MetropolisSamplerState</span><span class="p">,</span> <span class="n">MetropolisSampler</span>
 
 
@@ -532,8 +522,7 @@
         <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="MetropolisLocalPt"><a class="viewcode-back" href="../../../docs/_generated/samplers/netket.sampler.MetropolisLocalPt.html#netket.sampler.MetropolisLocalPt">[docs]</a><span class="nd">@wraps_legacy</span><span class="p">(</span><span class="n">LegacyMetropolisLocalPt</span><span class="p">,</span> <span class="s2">&quot;machine&quot;</span><span class="p">,</span> <span class="n">AbstractMachine</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">MetropolisLocalPt</span><span class="p">(</span><span class="n">hilbert</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="MetropolisLocalPt"><a class="viewcode-back" href="../../../docs/_generated/samplers/netket.sampler.MetropolisLocalPt.html#netket.sampler.MetropolisLocalPt">[docs]</a><span class="k">def</span> <span class="nf">MetropolisLocalPt</span><span class="p">(</span><span class="n">hilbert</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Sampler acting on one local degree of freedom.</span>
 
@@ -574,8 +563,7 @@
     <span class="k">return</span> <span class="n">MetropolisPtSampler</span><span class="p">(</span><span class="n">hilbert</span><span class="p">,</span> <span class="n">LocalRule</span><span class="p">(),</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="MetropolisExchangePt"><a class="viewcode-back" href="../../../docs/_generated/samplers/netket.sampler.MetropolisExchangePt.html#netket.sampler.MetropolisExchangePt">[docs]</a><span class="nd">@wraps_legacy</span><span class="p">(</span><span class="n">LegacyMetropolisExchangePt</span><span class="p">,</span> <span class="s2">&quot;machine&quot;</span><span class="p">,</span> <span class="n">AbstractMachine</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">MetropolisExchangePt</span><span class="p">(</span><span class="n">hilbert</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">clusters</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">graph</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">d_max</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="MetropolisExchangePt"><a class="viewcode-back" href="../../../docs/_generated/samplers/netket.sampler.MetropolisExchangePt.html#netket.sampler.MetropolisExchangePt">[docs]</a><span class="k">def</span> <span class="nf">MetropolisExchangePt</span><span class="p">(</span><span class="n">hilbert</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">clusters</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">graph</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">d_max</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This sampler acts locally only on two local degree of freedom :math:`s_i` and :math:`s_j`,</span>
 <span class="sd">    and proposes a new state: :math:`s_1 \dots s^\prime_i \dots s^\prime_j \dots s_N`,</span>
@@ -633,7 +621,6 @@
     <span class="k">return</span> <span class="n">MetropolisPtSampler</span><span class="p">(</span><span class="n">hilbert</span><span class="p">,</span> <span class="n">rule</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 
-<span class="nd">@wraps_legacy</span><span class="p">(</span><span class="n">LegacyMetropolisHamiltonianPt</span><span class="p">,</span> <span class="s2">&quot;machine&quot;</span><span class="p">,</span> <span class="n">AbstractMachine</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">MetropolisHamiltonianPt</span><span class="p">(</span><span class="n">hilbert</span><span class="p">,</span> <span class="n">hamiltonian</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Sampling based on the off-diagonal elements of a Hamiltonian (or a generic Operator).</span>

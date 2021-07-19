@@ -113,10 +113,6 @@
 <span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span>
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
 
-<span class="kn">from</span> <span class="nn">netket.utils</span> <span class="kn">import</span> <span class="n">wraps_legacy</span>
-<span class="kn">from</span> <span class="nn">netket.legacy.optimizer</span> <span class="kn">import</span> <span class="n">SR</span> <span class="k">as</span> <span class="n">SR_legacy</span>
-<span class="kn">from</span> <span class="nn">netket.legacy.machine</span> <span class="kn">import</span> <span class="n">AbstractMachine</span>
-
 <span class="kn">from</span> <span class="nn">netket.utils.numbers</span> <span class="kn">import</span> <span class="n">is_scalar</span>
 
 <span class="kn">import</span> <span class="nn">jax</span>
@@ -130,7 +126,6 @@
 <span class="c1"># default_direct = &quot;eigen&quot;</span>
 
 
-<span class="nd">@wraps_legacy</span><span class="p">(</span><span class="n">SR_legacy</span><span class="p">,</span> <span class="s2">&quot;machine&quot;</span><span class="p">,</span> <span class="n">AbstractMachine</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">build_SR</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">solver_restart</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Construct the structure holding the parameters for using the</span>
