@@ -164,7 +164,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_variational_state</span> <span class="o">=</span> <span class="n">variational_state</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span> <span class="o">=</span> <span class="n">optimizer</span>
 
-    <span class="k">def</span> <span class="nf">_forward_and_backward</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_forward_and_backward</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Performs the forward and backward pass at the same time.</span>
 <span class="sd">        Concrete drivers should either override this method, or override individually</span>
@@ -183,7 +183,7 @@
 <span class="sd">        Concrete should either implement _forward and _backward or the joint method</span>
 <span class="sd">        _forward_and_backward.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>  <span class="c1"># pragma: no cover</span>
 
     <span class="k">def</span> <span class="nf">_backward</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -191,7 +191,7 @@
 <span class="sd">        Concrete should either implement _forward and _backward or the joint method</span>
 <span class="sd">        _forward_and_backward.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>  <span class="c1"># pragma: no cover</span>
 
     <span class="k">def</span> <span class="nf">_estimate_stats</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observable</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -218,7 +218,7 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns an info string used to print information to screen about this driver.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">pass</span></div>
+        <span class="k">pass</span>  <span class="c1"># pragma: no cover</span></div>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">state</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
