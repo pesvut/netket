@@ -469,6 +469,11 @@
 
     <span class="nd">@minibatch_size</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">minibatch_size</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">minibatch_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="c1"># disable minibatches if it is None</span>
+        <span class="k">if</span> <span class="n">minibatch_size</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_minibatch_size</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">return</span>
+
         <span class="n">do_warn</span> <span class="o">=</span> <span class="kc">False</span>
 
         <span class="c1"># must be a multiple of n_chains</span>
@@ -482,9 +487,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_minibatch_size</span> <span class="o">=</span> <span class="n">minibatch_size</span>
 
         <span class="c1"># force recomputation</span>
+        <span class="n">old_chain_length</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_chain_length</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">chain_length</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">chain_length</span>
 
-        <span class="k">if</span> <span class="n">do_warn</span> <span class="ow">and</span> <span class="n">mpi</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">do_warn</span> <span class="ow">or</span> <span class="n">old_chain_length</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">chain_length</span><span class="p">)</span> <span class="ow">and</span> <span class="n">mpi</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
                 <span class="s2">&quot;`minibatch_size` must be a multiple of `n_chains` and a divisor of &quot;</span>
                 <span class="s2">&quot;`chain_length`.</span><span class="se">\n</span><span class="s2">&quot;</span>
@@ -502,6 +508,13 @@
         <span class="n">minibatch_length</span> <span class="o">=</span> <span class="n">minibatch_size</span> <span class="o">//</span> <span class="bp">self</span><span class="o">.</span><span class="n">sampler</span><span class="o">.</span><span class="n">n_chains</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">chain_length</span> <span class="o">//</span> <span class="n">minibatch_length</span>
+
+    <span class="nd">@n_minibatches</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">n_minibatches</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_minibatches</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">minibatch_size</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;must first set minibatch_size.&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_samples_per_rank</span> <span class="o">=</span> <span class="n">n_minibatches</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">minibatch_size</span>
 
 <div class="viewcode-block" id="MCState.reset"><a class="viewcode-back" href="../../../docs/_generated/variational/netket.vqs.MCState.html#netket.vqs.MCState.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
