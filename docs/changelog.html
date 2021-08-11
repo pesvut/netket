@@ -453,15 +453,37 @@
 <p><a class="reference external" href="https://github.com/netket/netket/compare/v3.0b3...master">GitHub commits</a>.</p>
 <div class="section" id="new-features">
 <h3>New features<a class="headerlink" href="#new-features" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>DenseSymm now accepts a mode argument to specify whever the symmetries should be computed with a full dense matrix or FFT. The latter method is much faster for sufficiently large systems. Other kwargs have been added to satisfy the interface. The api changes are also reflected in RBMSymm and GCNN. <a class="reference external" href="https://github.com/netket/netket/pull/792">#792</a></p></li>
+</ul>
 </div>
 <div class="section" id="breaking-changes">
 <h3>Breaking Changes<a class="headerlink" href="#breaking-changes" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>The so-called legacy netket in <code class="docutils literal notranslate"><span class="pre">netket.legacy</span></code> has been removed. <a class="reference external" href="https://github.com/netket/netket/pull/773">#773</a></p></li>
+</ul>
 </div>
 <div class="section" id="internal-changes">
 <h3>Internal Changes<a class="headerlink" href="#internal-changes" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>The methods <code class="docutils literal notranslate"><span class="pre">expect</span></code> and <code class="docutils literal notranslate"><span class="pre">expect_and_grad</span></code> of <code class="docutils literal notranslate"><span class="pre">MCState</span></code> now use dispatch to select the relevant implementation of the algorithm. They can therefore be expanded and overridden without editing NetKet’s source code. <a class="reference external" href="https://github.com/netket/netket/pull/804">#804</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">netket.utils.mpi_available</span></code> has been moved to <code class="docutils literal notranslate"><span class="pre">netket.utils.mpi.available</span></code> to have a more consistent api interface (all mpi-related properties in the same submodule). <a class="reference external" href="https://github.com/netket/netket/pull/827">#827</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">netket.logging.TBLog</span></code> has been renamed to <code class="docutils literal notranslate"><span class="pre">netket.logging.TensorBoardLog</span></code> for better readability. A deprecation warning is now issued if the older name is used <a class="reference external" href="https://github.com/netket/netket/pull/827">#827</a></p></li>
+<li><p>When <code class="docutils literal notranslate"><span class="pre">MCState</span></code> initializes a model by calling <code class="docutils literal notranslate"><span class="pre">model.init</span></code>, the call is now jitted. This should speed it up for non-trivial models but might break non-jit invariant models.  <a class="reference external" href="https://github.com/netket/netket/pull/832">#832</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">operator.get_conn_padded</span></code> now supports arbitrarily-dimensioned bitstrings as input and reshapes the output accordingly.  <a class="reference external" href="https://github.com/netket/netket/pull/834">#834</a></p></li>
+<li><p>NetKet’s implementation of dataclasses now support <code class="docutils literal notranslate"><span class="pre">pytree_node=True/False</span></code> on cached properties. <a class="reference external" href="https://github.com/netket/netket/pull/835">#835</a></p></li>
+<li><p>Plum version has been bumped to 1.5.1 to avoid broken versions (1.4, 1.5). <a class="reference external" href="https://github.com/netket/netket/pull/856">#856</a>.</p></li>
+<li><p>Numba version 0.54 is now allowed <a class="reference external" href="https://github.com/netket/netket/pull/857">#857</a>.</p></li>
+</ul>
 </div>
 <div class="section" id="bug-fixes">
 <h3>Bug Fixes<a class="headerlink" href="#bug-fixes" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Fix Progress bar bug. <a class="reference external" href="https://github.com/netket/netket/pull/810">#810</a></p></li>
+<li><p>Make the repr/printing of history objects nicer in the REPL. <a class="reference external" href="https://github.com/netket/netket/pull/819">#819</a></p></li>
+<li><p>The field <code class="docutils literal notranslate"><span class="pre">MCState.model</span></code> is now read-only, to prevent user errors. <a class="reference external" href="https://github.com/netket/netket/pull/822">#822</a></p></li>
+<li><p>The order of the operators in <code class="docutils literal notranslate"><span class="pre">PauliString</span></code> does no longer influences the estimate of the number of non-zero connected elements. <a class="reference external" href="https://github.com/netket/netket/pull/836">#836</a></p></li>
+</ul>
 </div>
 </div>
 <div class="section" id="netket-3-0b3-published-on-9-july-2021">
