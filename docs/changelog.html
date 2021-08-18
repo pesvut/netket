@@ -469,6 +469,7 @@
 <h3>Breaking Changes<a class="headerlink" href="#breaking-changes" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>The default initializer for <code class="docutils literal notranslate"><span class="pre">netket.nn.Dense</span></code> layers now matches the same default as <code class="docutils literal notranslate"><span class="pre">flax.linen</span></code>, and it is <code class="docutils literal notranslate"><span class="pre">lecun_normal</span></code> instead of <code class="docutils literal notranslate"><span class="pre">normal(0.01)</span></code> <a class="reference external" href="https://github.com/netket/netket/pull/869">#869</a></p></li>
+<li><p>The default initializer for <code class="docutils literal notranslate"><span class="pre">netket.nn.DenseSymm</span></code> layers is now chosen in order to give variance 1 to every output channel, therefore defaulting to <code class="docutils literal notranslate"><span class="pre">lecun_normal</span></code> <a class="reference external" href="https://github.com/netket/netket/pull/870">#870</a></p></li>
 </ul>
 </div>
 <div class="section" id="internal-changes">
