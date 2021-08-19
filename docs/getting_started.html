@@ -470,13 +470,13 @@ To install, run one of the two following commands</p>
 </div>
 <p>The flag <code class="code docutils literal notranslate"><span class="pre">--pre</span></code> tells pip to also install pre-release versions. As NetKet 3 is in beta, this is necessary.</p>
 <p>If you want to run NetKet on a GPU, you must install a GPU-compatible <code class="code docutils literal notranslate"><span class="pre">jaxlib</span></code>. For that, we advise you to
-look at the instructions on <a class="reference external" href="https://github.com/google/jax#pip-installation">jax repository</a>, however at the time
+look at the instructions on <a class="reference external" href="https://github.com/google/jax#pip-installation-gpu-cuda">jax repository</a>, however at the time
 of writing, this means you should run the following command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install -U jax <span class="nv">jaxlib</span><span class="o">==</span>X.XX.XX+cudaYYY -f https://storage.googleapis.com/jax-releases/jax_releases.html
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install --upgrade <span class="s2">&quot;jax[cuda111]&quot;</span> -f https://storage.googleapis.com/jax-releases/jax_releases.html
 </pre></div>
 </div>
-<p>where X.XX.XX should be a recent jaxlib version and YYY the cuda version installed on your computer.
-At the time of writing, Netket was tested with X=0.1.62 and cuda=111</p>
+<p>Where the jaxlib version must correspond to the version of the existing CUDA installation you want to use. Refer to jax
+documentation to learn more about matching cuda versions with python wheels.</p>
 <p>To query the installed <cite>netket</cite> version you can run the following command in your shell</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python -e <span class="s2">&quot;import netket; print(netket.version)&quot;</span>
 </pre></div>
