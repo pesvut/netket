@@ -14,6 +14,7 @@
 
 from typing import Callable, Optional, Union
 from functools import partial
+from textwrap import dedent
 
 import jax
 from jax import numpy as jnp
@@ -26,6 +27,29 @@ from netket.utils import warn_deprecation
 from .qgt_onthefly_logic import mat_vec_factory
 
 from ..linear_operator import LinearOperator, Uninitialized
+
+
+def check_valid_vector_type(x, target):
+    """
+    Raises a TypeError if x is complex where target is real, because it is not
+    supported by QGTOnTheFly and the imaginary part would be dicscarded after
+    anyhow.
+    """
+
+    def check(x, target):
+        if jnp.iscomplexobj(target) and not jnp.iscomplexobj(x):
+            raise TypeError(
+                dedent(
+                    """
+                    Cannot multiply the (real part of the) QGT by a complex vector.
+                    You should either take the real part of the vector, or perform 
+                    the multiplication against the real and imaginary part of the
+                    vector separately and then recomposing the two.
+                    """
+                )
+            )
+
+    jax.tree_multimap(check,x,target)
 
 
 def QGTOnTheFly(vstate=None, **kwargs) -> "QGTOnTheFlyT":
@@ -137,6 +161,8 @@ def onthefly_mat_treevec(
     else:
         ravel_result = False
 
+    check_valid_vector_type(vec, S._params)
+    
     vec = nkjax.tree_cast(vec, S._params)
 
     res = S._mat_vec(vec, S.diag_shift)
@@ -151,6 +177,8 @@ def onthefly_mat_treevec(
 def _solve(
     self: QGTOnTheFlyT, solve_fun, y: PyTree, *, x0: Optional[PyTree], **kwargs
 ) -> PyTree:
+    
+    check_valid_vector_type(y, self._params)
 
     y = nkjax.tree_cast(y, self._params)
 
