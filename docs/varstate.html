@@ -508,7 +508,7 @@ GitHub so that we can address them. They are mostly easy fixes.</p>
 <p>If you are not familiar with Flax, it’s a package that allows to define Neural Networks or other
 parametrized functions. While we suggest to read carefully the <a class="reference external" href="https://flax.readthedocs.io/en/latest/notebooks/flax_basics.html">introduction to Flax</a>, if you are impatient and just want to define some simple, easy
 models you can find some examples in the <a class="reference external" href="https://flax.readthedocs.io/en/latest/howtos/model_surgery.html">Model Surgery</a> section of Flax documentation.</p>
-<p>Over examples can be found in the source of the <span class="xref std std-ref">Pre-built models</span> distributed with NetKet, such as
+<p>Other examples can be found in the source of the <span class="xref std std-ref">Pre-built models</span> distributed with NetKet, such as
 <a class="reference internal" href="_generated/models/netket.models.RBM.html#netket.models.RBM" title="netket.models.RBM"><code class="xref py py-class docutils literal notranslate"><span class="pre">RBM</span></code></a> (the simplest one), <a class="reference internal" href="_generated/models/netket.models.MPSPeriodic.html#netket.models.MPSPeriodic" title="netket.models.MPSPeriodic"><code class="xref py py-class docutils literal notranslate"><span class="pre">MPSPeriodic</span></code></a> and <a class="reference internal" href="_generated/models/netket.models.NDM.html#netket.models.NDM" title="netket.models.NDM"><code class="xref py py-class docutils literal notranslate"><span class="pre">NDM</span></code></a> for
 more complicated examples.</p>
 <div class="admonition warning">
@@ -600,7 +600,7 @@ to modify them, for example to add 0.1 to all parameters is to do the following:
 <div class="section" id="sampling">
 <h3>Sampling<a class="headerlink" href="#sampling" title="Permalink to this headline">¶</a></h3>
 <p>You can also change the number of samples to extract (note: this will
-trigger recompilation of the sample function, so you should not this
+trigger recompilation of the sample function, so you should not do this
 in a hot loop) by changing <a class="reference internal" href="_generated/variational/netket.vqs.MCState.html#netket.vqs.MCState.n_samples" title="netket.vqs.MCState.n_samples"><code class="xref py py-attr docutils literal notranslate"><span class="pre">n_samples</span></code></a>, and
 the number of discarded samples at the beginning of every markov chain by
 changing <a class="reference internal" href="_generated/variational/netket.vqs.MCState.html#netket.vqs.MCState.n_discard_per_chain" title="netket.vqs.MCState.n_discard_per_chain"><code class="xref py py-attr docutils literal notranslate"><span class="pre">n_discard_per_chain</span></code></a>.</p>
