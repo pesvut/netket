@@ -20,6 +20,8 @@ from typing import Optional
 
 import numpy as np
 
+from netket.graph import AbstractGraph
+from netket.hilbert import AbstractHilbert
 from netket.utils import HashableArray, struct
 from netket.utils.types import Array, DType, Shape
 from netket.utils.dispatch import dispatch
@@ -69,13 +71,25 @@ class Permutation(Element):
 
 @dispatch
 def product(p: Permutation, x: Array):
-    return x[..., p.permutation]
+    return x[..., np.asarray(p.permutation)]
 
 
 @dispatch
 def product(p: Permutation, q: Permutation):  # noqa: F811
     name = None if p._name is None and q._name is None else f"{p} @ {q}"
     return Permutation(p(np.asarray(q)), name)
+
+
+def _embed_permutation(perm: Array, site_mapping: Array, target_degree: int):
+    if not max(site_mapping) < target_degree:
+        raise ValueError("Sites indices in site_mapping must be < target_degree")
+    perm = np.asarray(perm)
+    site_mapping = np.asarray(site_mapping)
+
+    result = np.arange(target_degree)
+    result[site_mapping] = result[site_mapping[perm]]
+
+    return Permutation(result)
 
 
 @struct.dataclass
@@ -186,6 +200,45 @@ class PermutationGroup(FiniteGroup):
         Equivalent to :code:`self.to_array().shape`.
         """
         return (len(self), self.degree)
+
+    def embed(self, target_degree: int, site_mapping: Array):
+        """
+        Return a new permutation group isomorphic to :code:`self` acting on sequences
+        of length :code:`target_degree >= self.degree`. :code:`site_mapping` specifices
+        which indices of the target sequence the new permutations act on.
+
+        Example:
+            Embed the translation group of a 3-site chain into a larger space,
+            acting only on the first, middle, and last entry of the input.
+
+            >>> import netket as nk
+            >>> g1 = nk.graph.Chain(3).translation_group()
+            >>> g1([1, 2, 3])
+            array([[1, 2, 3],
+                   [3, 1, 2],
+                   [2, 3, 1]])
+            >>> g2 = g1.embed(7, [0, 3, 6])
+            >>> g2([1, 2, 3, 4, 5, 6, 7])
+            array([[1, 2, 3, 4, 5, 6, 7],
+                   [7, 2, 3, 1, 5, 6, 4],
+                   [4, 2, 3, 7, 5, 6, 1]])
+        """
+        if len(site_mapping) != self.degree:
+            raise ValueError(
+                "graph.n_nodes must equal the degree of the permutation group"
+            )
+        if target_degree < self.degree:
+            raise ValueError(
+                f"Cannot embed group of degree {self.degree} into space with {target_degree} sites"
+            )
+
+        return PermutationGroup(
+            [
+                _embed_permutation(p, site_mapping, target_degree)
+                for p in self.to_array()
+            ],
+            degree=target_degree,
+        )
 
 
 @dispatch

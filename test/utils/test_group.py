@@ -16,7 +16,7 @@ import pytest
 
 import netket as nk
 import numpy as np
-from numpy.testing import assert_equal
+from numpy.testing import assert_array_equal, assert_equal
 
 from netket.utils import group
 
@@ -341,3 +341,34 @@ def test_pyrochlore():
     Oh = group.axial.inversion_group() @ group.cubic.Td()
     # after specifying the unit cell, Fd3m is isomorphic to Oh
     assert_equal(Fd3m.product_table, Oh.product_table)
+
+
+def test_embedding():
+    from numpy.testing import assert_array_equal
+    from netket.utils.group._permutation_group import _embed_permutation
+
+    assert_array_equal(_embed_permutation([1, 0], [0, 3], 4), [3, 1, 2, 0])
+    assert_array_equal(_embed_permutation([1, 0], [0, 1], 4), [1, 0, 2, 3])
+    assert_array_equal(_embed_permutation([1, 0], [1, 3], 4), [0, 3, 2, 1])
+
+    assert_array_equal(_embed_permutation([0, 1], [0, 3], 4), [0, 1, 2, 3])
+    assert_array_equal(_embed_permutation([0, 1], [0, 1], 4), [0, 1, 2, 3])
+    assert_array_equal(_embed_permutation([0, 1], [1, 3], 4), [0, 1, 2, 3])
+
+    assert_array_equal(_embed_permutation([0, 1, 2], [0, 1, 2], 3), [0, 1, 2])
+    assert_array_equal(_embed_permutation([0, 1, 2], [2, 1, 0], 3), [0, 1, 2])
+
+    assert_array_equal(_embed_permutation([2, 0, 1], [0, 1, 2], 3), [2, 0, 1])
+    assert_array_equal(_embed_permutation([2, 0, 1], [2, 1, 0], 3), [1, 2, 0])
+
+    with pytest.raises(ValueError):
+        _embed_permutation([0, 1, 2], [1, 2, 3], 3)
+
+    assert_array_equal(_embed_permutation([0, 1, 2], [1, 2, 3], 4), [0, 1, 2, 3])
+    assert_array_equal(_embed_permutation([0, 1, 2], [3, 2, 1], 4), [0, 1, 2, 3])
+
+    assert_array_equal(_embed_permutation([2, 1, 0], [1, 2, 3], 4), [0, 3, 2, 1])
+    assert_array_equal(_embed_permutation([2, 1, 0], [3, 2, 1], 4), [0, 3, 2, 1])
+
+    assert_array_equal(_embed_permutation([1, 2, 0], [1, 2, 3], 4), [0, 2, 3, 1])
+    assert_array_equal(_embed_permutation([1, 2, 0], [3, 2, 1], 4), [0, 3, 1, 2])

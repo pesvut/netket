@@ -12,6 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from copy import deepcopy
+import functools
 from typing import List, Optional, Sequence, Union
 
 import numpy as np
@@ -19,7 +21,7 @@ import igraph
 
 from netket.utils.deprecation import warn_deprecation
 from netket.utils.group import Permutation, PermutationGroup
-from .abstract_graph import AbstractGraph, Edge, ColoredEdge, EdgeSequence
+from .abstract_graph import AbstractGraph, Edge, ColoredEdge, EdgeSequence, Node
 
 
 class Graph(AbstractGraph):
@@ -35,6 +37,8 @@ class Graph(AbstractGraph):
     def __init__(
         self,
         edges: Union[Sequence[Edge], Sequence[ColoredEdge]],
+        nodes: Optional[Union[int, Sequence[Node]]] = None,
+        *,
         n_nodes: Optional[int] = None,
     ):
         """
@@ -47,18 +51,31 @@ class Graph(AbstractGraph):
                 graph if not all vertices appear in an edge.
 
         """
+        if nodes is not None and n_nodes is not None:
+            raise TypeError("only one of nodes, n_nodes can be passed")
+        elif n_nodes is not None:
+            nodes = n_nodes
+            warn_deprecation(
+                f"n_nodes is deprecated, you may pass nodes={n_nodes} instead"
+            )
+
         edges, colors = self._clean_edges(edges)
-        if n_nodes is None:
+        if nodes is None:
             if len(edges) > 0:
-                n_nodes = max(max(e) for e in edges) + 1
+                nodes = max(max(e) for e in edges) + 1
             else:
-                n_nodes = 0
+                nodes = 0
+        if isinstance(nodes, int):
+            nodes = list(range(nodes))
+
         graph = igraph.Graph(directed=False)
-        graph.add_vertices(n_nodes)
+        graph.add_vertices(len(nodes), attributes={"value": nodes})
         graph.add_edges(edges, attributes={"color": colors})
 
         self._igraph = graph
-        self._automorphisms = None
+
+        # per instance LRU cache (TODO: could be a custom decorator)
+        self.automorphisms = functools.lru_cache(maxsize=2)(self.automorphisms)
 
     @staticmethod
     def _clean_edges(edges):
@@ -92,7 +109,6 @@ class Graph(AbstractGraph):
             raise ValueError("Directed graphs are not currently supported.")
         self = cls.__new__(cls)
         self._igraph = graph.copy()
-        self._automorphisms = None
 
         if "color" not in self._igraph.edge_attributes():
             self._igraph.es.set_attribute_values("color", [0] * self._igraph.ecount())
@@ -100,6 +116,14 @@ class Graph(AbstractGraph):
             if not all(isinstance(c, int) for c in self.edge_colors):
                 raise ValueError(
                     "graph has 'color' edge attributes, but not all colors are integers."
+                )
+
+        if "value" not in self._igraph.attributes():
+            self._igraph.vs["value"] = list(range(self._igraph.vcount()))
+        else:
+            if not all(isinstance(v, int) for v in self.nodes()):
+                raise ValueError(
+                    "graph has 'value' node attribute, but not all values are integers."
                 )
 
         return self
@@ -146,8 +170,12 @@ class Graph(AbstractGraph):
         r"""The number of edges in the graph."""
         return self._igraph.ecount()
 
-    def nodes(self) -> Sequence[int]:
-        return range(self._igraph.vcount())
+    def nodes(self) -> Sequence[Node]:
+        """Returns the sequence of node values."""
+        if self.n_nodes > 0:
+            return self._igraph.vs["value"]
+        else:
+            return []
 
     def edges(
         self,
@@ -155,7 +183,14 @@ class Graph(AbstractGraph):
         *,
         return_color: bool = False,
         filter_color: Optional[int] = None,
+        use_node_values: bool = False,
     ) -> EdgeSequence:
+        if use_node_values:
+            nv = self.nodes()
+            map_edge = lambda e: (nv[e[0]], nv[e[1]])
+        else:
+            map_edge = lambda e: e
+
         if color is not None:
             warn_deprecation(
                 "The color option has been split into return_color and filter_color."
@@ -169,15 +204,15 @@ class Graph(AbstractGraph):
                 raise TypeError("Incorrect type for 'color'")
 
         if not return_color and filter_color is None:
-            return self._igraph.get_edgelist()
+            return [map_edge(e) for e in self._igraph.get_edgelist()]
 
         edges_with_color = zip(self._igraph.get_edgelist(), self.edge_colors)
         if filter_color is not None:
             edges_with_color = filter(lambda x: x[1] == filter_color, edges_with_color)
         if return_color:
-            return [(*e, c) for (e, c) in edges_with_color]
+            return [(*map_edge(e), c) for (e, c) in edges_with_color]
         else:
-            return [e for (e, _) in edges_with_color]
+            return [map_edge(e) for (e, _) in edges_with_color]
 
     @property
     def edge_colors(self) -> Sequence[int]:
@@ -193,7 +228,7 @@ class Graph(AbstractGraph):
     def distances(self) -> List[List]:
         return np.array(self._igraph.shortest_paths())
 
-    def _compute_automorphisms(self):
+    def _compute_automorphisms(self, *, use_node_values: bool = False):
         """
         Compute the graph autmorphisms of this graph.
         """
@@ -201,17 +236,22 @@ class Graph(AbstractGraph):
         result = self._igraph.get_isomorphisms_vf2(
             edge_color1=colors, edge_color2=colors
         )
+        if use_node_values:
+            nv = self.nodes()
+            map_node = lambda i: nv[i]
+        else:
+            map_node = lambda i: i
+        map_node = np.vectorize(map_node)
 
         # sort them s.t. the identity comes first
         result = np.unique(result, axis=0).tolist()
-        result = PermutationGroup([Permutation(i) for i in result], self.n_nodes)
+        result = PermutationGroup(
+            [Permutation(map_node(i)) for i in result], self.n_nodes
+        )
         return result
 
-    # TODO turn into a struct.property_cached?
-    def automorphisms(self) -> PermutationGroup:
-        if self._automorphisms is None:
-            self._automorphisms = self._compute_automorphisms()
-        return self._automorphisms
+    def automorphisms(self, *, use_node_values: bool = False) -> PermutationGroup:
+        return self._compute_automorphisms(use_node_values=use_node_values)
 
     # Output and drawing
     # ------------------------------------------------------------------------
@@ -220,23 +260,46 @@ class Graph(AbstractGraph):
             str(type(self)).split(".")[-1][:-2], self.n_nodes, self.n_edges
         )
 
+    # Copying and modification
+    # ------------------------------------------------------------------------
+    def copy(self):
+        """Returns a copy of the graph."""
+        return deepcopy(self)
 
-def Edgeless(n_nodes: int) -> Graph:
+    def update_nodes(
+        self, new_values: Sequence[int] = None, *, offset: Optional[int] = None
+    ):
+        if new_values is None:
+            if offset is None:
+                raise TypeError("one of new_values and offset must be specified")
+            new_values = [l + offset for l in self.nodes()]
+        elif offset is not None:
+            raise TypeError("only one of new_values and offset can be specified")
+        if not len(new_values) == self.n_nodes:
+            raise ValueError("new_values must have length n_nodes")
+        copy = self.copy()
+        copy._igraph.vs["value"] = new_values
+        return copy
+
+
+def Edgeless(
+    nodes: Union[int, Sequence[Node]], *, n_nodes: Optional[int] = None
+) -> Graph:
     """
     Construct a set graph (collection of unconnected vertices).
 
     Args:
-        nodes: An integer number of nodes or a list of ints that index nodes of a graph.
+        nodes: An integer number of nodes or a list of ints representing node values.
 
     Example:
         >>> import netket
-        >>> g=netket.graph.Edgeless([0,1,2,3])
+        >>> g=netket.graph.Edgeless([1, 2, 3, 4])
         >>> print(g.n_nodes)
         4
         >>> print(g.n_edges)
         0
     """
-    return Graph([], n_nodes)
+    return Graph(edges=[], nodes=nodes, n_nodes=n_nodes)
 
 
 def DoubledGraph(graph: AbstractGraph) -> Graph:
@@ -257,7 +320,7 @@ def DoubledGraph(graph: AbstractGraph) -> Graph:
     dnodes = 2 * n_v
     dedges += [(edge[0] + n_v, edge[1] + n_v) for edge in graph.edges()]
 
-    return Graph(n_nodes=dnodes, edges=dedges)
+    return Graph(nodes=dnodes, edges=dedges)
 
 
 def disjoint_union(graph_1: Graph, graph_2: Graph) -> Graph:

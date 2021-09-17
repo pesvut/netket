@@ -83,10 +83,12 @@ def compute_clusters(graph, d_max):
     clusters = []
     distances = np.asarray(graph.distances())
     size = distances.shape[0]
+    node_values = graph.nodes()
     for i in range(size):
         for j in range(i + 1, size):
             if distances[i][j] <= d_max:
-                clusters.append((i, j))
+                u, v = node_values[i], node_values[j]
+                clusters.append((u, v))
 
     res_clusters = np.empty((len(clusters), 2), dtype=np.int64)
 

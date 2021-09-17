@@ -138,6 +138,11 @@ class Ising(SpecialHamiltonian):
             >>> print(op)
             Ising(J=0.5, h=1.321; dim=20)
         """
+        if graph.nodes() != list(range(graph.n_nodes)):
+            raise NotImplementedError(
+                "Labelled nodes not yet supported, consider using GraphOperator in the meantime"
+            )
+
         assert (
             graph.n_nodes == hilbert.size
         ), "The size of the graph must match the hilbert space"
@@ -353,8 +358,6 @@ class Heisenberg(GraphOperator):
         graph: AbstractGraph,
         J: float = 1,
         sign_rule=None,
-        *,
-        acting_on_subspace: Union[List[int], int] = None,
     ):
         """
         Constructs an Heisenberg operator given a hilbert space and a graph providing the
@@ -369,11 +372,6 @@ class Heisenberg(GraphOperator):
                        at every odd site of the lattice. For non-bipartite lattices, the
                        sign rule cannot be applied. Defaults to True if the lattice is
                        bipartite, False otherwise.
-         acting_on_subspace: Specifies the mapping between nodes of the graph and
-            Hilbert space sites, so that graph node :code:`i ∈ [0, ..., graph.n_nodes - 1]`,
-            corresponds to :code:`acting_on_subspace[i] ∈ [0, ..., hilbert.n_sites]`.
-            Must be a list of length `graph.n_nodes`. Passing a single integer :code:`start`
-            is equivalent to :code:`[start, ..., start + graph.n_nodes - 1]`.
 
         Examples:
          Constructs a ``Heisenberg`` operator for a 1D system.
@@ -418,7 +416,6 @@ class Heisenberg(GraphOperator):
             hilbert,
             graph,
             bond_ops=[J * heis_term],
-            acting_on_subspace=acting_on_subspace,
         )
 
     @property
@@ -474,6 +471,10 @@ class BoseHubbard(SpecialHamiltonian):
            >>> print(op.hilbert.size)
            9
         """
+        if graph.nodes() != list(range(graph.n_nodes)):
+            raise NotImplementedError(
+                "Labelled nodes not yet supported, consider using GraphOperator in the meantime"
+            )
 
         assert (
             graph.n_nodes == hilbert.size

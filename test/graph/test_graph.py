@@ -342,6 +342,7 @@ def test_edges_are_correct():
 def test_nodes():
     count = lambda it: sum(1 for _ in it)
     for graph in graphs:
+        print(graph)
         nodes = graph.nodes()
         assert count(nodes) == graph.n_nodes
 
@@ -742,3 +743,17 @@ def test_graph_conversions():
 def test_edge_colors():
     for g in graphs:
         assert all(isinstance(c, int) for c in g.edge_colors)
+
+
+def test_node_values():
+    g = nk.graph.Chain(3)
+    assert list(g.nodes()) == [0, 1, 2]
+
+    g1 = g.update_nodes([10, 11, 12])
+    assert list(g1.nodes()) == [10, 11, 12]
+
+    assert g1 is not g
+    assert list(g.nodes()) == [0, 1, 2]
+
+    g2 = g.update_nodes(offset=100)
+    assert list(g2.nodes()) == [100, 101, 102]

@@ -16,6 +16,7 @@ import abc
 from typing import List, Iterator, Sequence, Tuple, Union, Optional
 
 
+Node = int
 Edge = Tuple[int, int]
 ColoredEdge = Tuple[int, int, int]
 EdgeSequence = Union[Sequence[Edge], Sequence[ColoredEdge]]
@@ -36,13 +37,19 @@ class AbstractGraph(abc.ABC):
 
     @abc.abstractmethod
     def edges(
-        self, return_color: bool = False, filter_color: Optional[int] = None
+        self,
+        return_color: bool = False,
+        filter_color: Optional[int] = None,
+        use_node_values: bool = False,
     ) -> EdgeSequence:
-        r"""Returns the sequence of edges of the graph.
+        r"""Returns the sequence of edges of the graph. By default, each edge
+        is a tuple `(i, j)` connecting the nodes with indices `i` and `j`.
 
         Arguments:
             return_color: If :code:`True`, return edges with added color information.
             filter_color: If set, return only edges of the given color.
+            use_node_values: If :code:`True`, edges are returned as pairs `(l[i], l[j])`
+                where :code:`l = self.nodes()`.
 
         Returns:
             A sequence of edges as tuples :code:`(i, j)` or, if `return_color` is
@@ -91,3 +98,16 @@ class AbstractGraph(abc.ABC):
         r"""List containing the adjacency list of the graph where each node
         is represented by an integer in [0, n_nodes)"""
         raise NotImplementedError
+
+    @abc.abstractmethod
+    def update_nodes(
+        self, new_values: Sequence[int] = None, *, offset: Optional[int] = None
+    ):
+        """
+        Returns a copy of the graph with updated node labels. If :code:`new_values` is specified,
+        those labels are assigned. :code:`new_values` must be a sequence of length :code:`n_nodes`.
+
+        Alternatively, :code:`offset` may be passed, in which case the labels are updated
+        by adding the offset to each one.
+        """
+        raise NotImplementedError()

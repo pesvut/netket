@@ -208,6 +208,10 @@ class Lattice(Graph):
         Basis coordinates are available from :func:`~netket.graph.Lattice.basis_coords`
         and can be resolved into an id via
         :func:`~netket.graph.Lattice.id_from_basis_coords`.
+
+    Furthermore, as for any :code:`AbstractGraph`, each site has an associated node value
+    which typically corresponds to a Hilbert space site index. For a site with given :code:`id`,
+    the node value is :code:`self.nodes()[id]`.
     """
     # Initialization
     # ------------------------------------------------------------------------
@@ -504,6 +508,15 @@ class Lattice(Graph):
         """
         ids = self.id_from_basis_coords(basis_coords)
         return self.positions[ids]
+
+    def node_from_position(self, position: PositionT) -> Union[int, Array]:
+        """
+        Returns the node value for a site at the given position. When passed a rank-2 array
+        where each row is a position, returns an array of the corresponding node values.
+        Throws an `InvalidSiteError` if any of the positions do not correspond to a site.
+        """
+        ids = self.id_from_position(position)
+        return _np.vectorize(lambda i: self.nodes()[i])(ids)
 
     def to_reciprocal_lattice(self, ks: Array) -> Array:
         """
