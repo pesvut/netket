@@ -118,23 +118,6 @@
 <span class="kn">from</span> <span class="nn">._local_operator</span> <span class="kn">import</span> <span class="n">LocalOperator</span>
 
 
-<span class="k">def</span> <span class="nf">check_acting_on_subspace</span><span class="p">(</span><span class="n">acting_on_subspace</span><span class="p">,</span> <span class="n">hilbert</span><span class="p">,</span> <span class="n">graph</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">acting_on_subspace</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">acting_on_subspace</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">hilbert</span><span class="o">.</span><span class="n">size</span><span class="p">))</span>
-    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">acting_on_subspace</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
-        <span class="n">start</span> <span class="o">=</span> <span class="n">acting_on_subspace</span>
-        <span class="n">acting_on_subspace</span> <span class="o">=</span> <span class="p">[</span><span class="n">start</span> <span class="o">+</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">graph</span><span class="o">.</span><span class="n">n_nodes</span><span class="p">)]</span>
-    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">acting_on_subspace</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">acting_on_subspace</span><span class="p">)</span> <span class="o">!=</span> <span class="n">graph</span><span class="o">.</span><span class="n">n_nodes</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                <span class="s2">&quot;acting_on_subspace must be a list of length graph.n_nodes&quot;</span>
-            <span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;acting_on_subspace must be a list or single integer&quot;</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">acting_on_subspace</span>
-
-
 <div class="viewcode-block" id="GraphOperator"><a class="viewcode-back" href="../../../docs/_generated/operator/netket.operator.GraphOperator.html#netket.operator.GraphOperator">[docs]</a><span class="k">class</span> <span class="nc">GraphOperator</span><span class="p">(</span><span class="n">LocalOperator</span><span class="p">):</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A graph-based quantum operator. In its simplest terms, this is the sum of</span>
