@@ -658,6 +658,17 @@ the purpose of identifying nearest neighbors.</p></li>
 </dd></dl>
 
 <dl class="py attribute">
+<dt id="netket.graph.Lattice.node_labels">
+<code class="sig-name descname"><span class="pre">node_labels</span></code><a class="headerlink" href="#netket.graph.Lattice.node_labels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sequence of node labels.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Sequence" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
 <dt id="netket.graph.Lattice.pbc">
 <code class="sig-name descname"><span class="pre">pbc</span></code><a class="headerlink" href="#netket.graph.Lattice.pbc" title="Permalink to this definition">¶</a></dt>
 <dd><p>Array of bools such that <cite>pbc[d]</cite> indicates whether dimension d has
@@ -730,6 +741,12 @@ is represented by an integer in [0, n_nodes)</p>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">PermutationGroup</span></code></p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="netket.graph.Lattice.copy">
+<code class="sig-name descname"><span class="pre">copy</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#netket.graph.Lattice.copy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a copy of the graph.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -911,6 +928,23 @@ Throws an <cite>InvalidSiteError</cite> if no site is found for any of the coord
 </dd>
 <dt class="field-even">Parameters</dt>
 <dd class="field-even"><p><strong>basis_coords</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.21)"><em>numpy.ndarray</em></a>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="netket.graph.Lattice.relabel_nodes">
+<code class="sig-name descname"><span class="pre">relabel_nodes</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#netket.graph.Lattice.relabel_nodes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a copy of the graph with updated node labels. If <code class="code docutils literal notranslate"><span class="pre">new_labels</span></code> is specified,
+those labels are assigned. <code class="code docutils literal notranslate"><span class="pre">new_labels</span></code> must be a sequence of length <code class="code docutils literal notranslate"><span class="pre">n_nodes</span></code>.</p>
+<p>Alternatively, <code class="code docutils literal notranslate"><span class="pre">offset</span></code> may be passed, in which case the labels are updated
+by adding the offset to each one.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>new_labels</strong> (<em>Optional</em><em>[</em><em>Sequence</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>]</em><em>]</em>) – </p></li>
+<li><p><strong>offset</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>]</em>) – </p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>

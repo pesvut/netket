@@ -18,7 +18,7 @@
       .. autoattribute:: GraphOperator.H
       .. autoattribute:: GraphOperator.T
       .. autoattribute:: GraphOperator.acting_on
-      .. autoattribute:: GraphOperator.acting_on_subspace
+      .. autoattribute:: GraphOperator.acting_on_sites
       .. autoattribute:: GraphOperator.constant
       .. autoattribute:: GraphOperator.dtype
       .. autoattribute:: GraphOperator.graph

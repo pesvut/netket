@@ -18,6 +18,7 @@
       .. autoattribute:: AbstractGraph.edge_colors
       .. autoattribute:: AbstractGraph.n_edges
       .. autoattribute:: AbstractGraph.n_nodes
+      .. autoattribute:: AbstractGraph.node_labels
    
       
    .. rst-class:: class-dl-groups
@@ -30,5 +31,6 @@
       .. automethod:: AbstractGraph.is_bipartite
       .. automethod:: AbstractGraph.is_connected
       .. automethod:: AbstractGraph.nodes
+      .. automethod:: AbstractGraph.relabel_nodes
 
    

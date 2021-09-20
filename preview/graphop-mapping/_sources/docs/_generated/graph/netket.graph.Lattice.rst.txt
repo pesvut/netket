@@ -24,6 +24,7 @@
       .. autoattribute:: Lattice.n_edges
       .. autoattribute:: Lattice.n_nodes
       .. autoattribute:: Lattice.ndim
+      .. autoattribute:: Lattice.node_labels
       .. autoattribute:: Lattice.pbc
       .. autoattribute:: Lattice.positions
       .. autoattribute:: Lattice.site_offsets
@@ -36,6 +37,7 @@
       .. automethod:: Lattice.adjacency_list
       .. automethod:: Lattice.atom_label
       .. automethod:: Lattice.automorphisms
+      .. automethod:: Lattice.copy
       .. automethod:: Lattice.distances
       .. automethod:: Lattice.draw
       .. automethod:: Lattice.edges
@@ -48,6 +50,7 @@
       .. automethod:: Lattice.nodes
       .. automethod:: Lattice.point_group
       .. automethod:: Lattice.position_from_basis_coords
+      .. automethod:: Lattice.relabel_nodes
       .. automethod:: Lattice.rotation_group
       .. automethod:: Lattice.site_to_coord
       .. automethod:: Lattice.site_to_vector

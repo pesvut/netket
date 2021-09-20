@@ -18,6 +18,7 @@
       .. autoattribute:: Graph.edge_colors
       .. autoattribute:: Graph.n_edges
       .. autoattribute:: Graph.n_nodes
+      .. autoattribute:: Graph.node_labels
    
       
    .. rst-class:: class-dl-groups
@@ -25,6 +26,7 @@
    Methods
       .. automethod:: Graph.adjacency_list
       .. automethod:: Graph.automorphisms
+      .. automethod:: Graph.copy
       .. automethod:: Graph.distances
       .. automethod:: Graph.edges
       .. automethod:: Graph.from_igraph
@@ -32,6 +34,7 @@
       .. automethod:: Graph.is_bipartite
       .. automethod:: Graph.is_connected
       .. automethod:: Graph.nodes
+      .. automethod:: Graph.relabel_nodes
       .. automethod:: Graph.to_igraph
       .. automethod:: Graph.to_networkx
 

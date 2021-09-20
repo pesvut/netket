@@ -156,6 +156,12 @@
 <span class="sd">        :code:`self.edges`.&quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span>
 
+    <span class="nd">@property</span>
+    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">def</span> <span class="nf">node_labels</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Sequence of node labels.&quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
+
 <div class="viewcode-block" id="AbstractGraph.nodes"><a class="viewcode-back" href="../../../docs/_generated/graph/netket.graph.AbstractGraph.html#netket.graph.AbstractGraph.nodes">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">def</span> <span class="nf">nodes</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
         <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Iterator over the nodes of the graph&quot;&quot;&quot;</span>
@@ -188,7 +194,20 @@
     <span class="k">def</span> <span class="nf">adjacency_list</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">]:</span>
         <span class="sa">r</span><span class="sd">&quot;&quot;&quot;List containing the adjacency list of the graph where each node</span>
 <span class="sd">        is represented by an integer in [0, n_nodes)&quot;&quot;&quot;</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div></div>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="AbstractGraph.relabel_nodes"><a class="viewcode-back" href="../../../docs/_generated/graph/netket.graph.AbstractGraph.html#netket.graph.AbstractGraph.relabel_nodes">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">def</span> <span class="nf">relabel_nodes</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">new_labels</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">offset</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns a copy of the graph with updated node labels. If :code:`new_labels` is specified,</span>
+<span class="sd">        those labels are assigned. :code:`new_labels` must be a sequence of length :code:`n_nodes`.</span>
+
+<span class="sd">        Alternatively, :code:`offset` may be passed, in which case the labels are updated</span>
+<span class="sd">        by adding the offset to each one.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div></div>
 </pre></div>
 
     </div>
