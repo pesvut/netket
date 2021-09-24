@@ -325,3 +325,30 @@ def test_operator_on_subspace():
 
     h4 = nk.operator.Heisenberg(hi, g)
     assert h4.acting_on == h1.acting_on
+
+
+def test_operators_on_subspaces():
+    n_fock = 1
+    n_spin = 2
+    hi = nk.hilbert.Fock(N=n_fock, n_max=16) * nk.hilbert.Spin(1 / 2, N=n_spin)
+
+    g_spin = nk.graph.Chain(n_spin).update_nodes(offset=n_fock)
+
+    op_spin = nk.operator.Heisenberg(hi, g_spin)
+    op_fock = nk.operator.boson.number(hi, 0)
+
+    op_coupling = nk.operator.LocalOperator(hi)
+    for u in g_spin.nodes():
+        op_coupling += nk.operator.boson.destroy(hi, 0) * nk.operator.spin.sigmap(
+            hi, u
+        ) + nk.operator.boson.create(hi, 0) * nk.operator.spin.sigmam(hi, u)
+
+    ham = op_spin + op_coupling + op_fock
+
+    x = np.array([9, 1, -1], dtype=float)
+    conn, mels = ham.get_conn(x)
+
+    np.testing.assert_array_equal(
+        conn, [[9, 1, -1], [9, -1, 1], [8, -1, -1], [10, 1, 1]]
+    )
+    np.testing.assert_almost_equal(mels, [8.0, -2.0, 3.0, np.sqrt(10)])
