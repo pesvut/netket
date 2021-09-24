@@ -9,6 +9,8 @@
 
    
    
+
+   .. automethod:: Module.__init__
       
    .. rst-class:: class-dl-groups
 
