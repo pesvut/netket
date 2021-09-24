@@ -284,7 +284,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="AbstractOperator.get_conn"><a class="viewcode-back" href="../../../docs/_generated/operator/netket.operator.AbstractOperator.html#netket.operator.AbstractOperator.get_conn">[docs]</a>    <span class="k">def</span> <span class="nf">get_conn</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<div class="viewcode-block" id="AbstractOperator.get_conn"><a class="viewcode-back" href="../../../docs/_generated/operator/netket.operator.AbstractOperator.html#netket.operator.AbstractOperator.get_conn">[docs]</a>    <span class="k">def</span> <span class="nf">get_conn</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
         <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Finds the connected elements of the Operator. Starting</span>
 <span class="sd">        from a given quantum number x, it finds all other quantum numbers x&#39; such</span>
 <span class="sd">        that the matrix element :math:`O(x,x&#39;)` is different from zero. In general there</span>
@@ -298,7 +298,17 @@
 <span class="sd">            matrix: The connected states x&#39; of shape (N_connected,hilbert.size)</span>
 <span class="sd">            array: An array containing the matrix elements :math:`O(x,x&#39;)` associated to each x&#39;.</span>
 
+<span class="sd">        Raise:</span>
+<span class="sd">            ValueError: If the given quantum number is not compatible with the hilbert space.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;get_conn does not support batches. Please use get_conn_flattened instead.&quot;</span>
+            <span class="p">)</span>
+        <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">hilbert</span><span class="o">.</span><span class="n">size</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;The given quantum numbers do not match the hilbert space.&quot;</span>
+            <span class="p">)</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_conn_flattened</span><span class="p">(</span>
             <span class="n">x</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)),</span>
