@@ -46,7 +46,6 @@
       .. automethod:: GraphOperator.n_conn
       .. automethod:: GraphOperator.to_dense
       .. automethod:: GraphOperator.to_linear_operator
-      .. automethod:: GraphOperator.to_qobj
       .. automethod:: GraphOperator.to_sparse
       .. automethod:: GraphOperator.transpose
 

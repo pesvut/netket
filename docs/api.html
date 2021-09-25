@@ -290,6 +290,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#operators">Operators</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="_generated/operator/netket.operator.AbstractOperator.html">netket.operator.AbstractOperator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_generated/operator/netket.operator.DiscreteOperator.html">netket.operator.DiscreteOperator</a></li>
 <li class="toctree-l3"><a class="reference internal" href="_generated/operator/netket.operator.BoseHubbard.html">netket.operator.BoseHubbard</a></li>
 <li class="toctree-l3"><a class="reference internal" href="_generated/operator/netket.operator.GraphOperator.html">netket.operator.GraphOperator</a></li>
 <li class="toctree-l3"><a class="reference internal" href="_generated/operator/netket.operator.LocalOperator.html">netket.operator.LocalOperator</a></li>
@@ -551,25 +552,28 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="_generated/operator/netket.operator.AbstractOperator.html#netket.operator.AbstractOperator" title="netket.operator.AbstractOperator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">netket.operator.AbstractOperator</span></code></a></p></td>
 <td><p>Abstract class for quantum Operators.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="_generated/operator/netket.operator.BoseHubbard.html#netket.operator.BoseHubbard" title="netket.operator.BoseHubbard"><code class="xref py py-obj docutils literal notranslate"><span class="pre">netket.operator.BoseHubbard</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="_generated/operator/netket.operator.DiscreteOperator.html#netket.operator.DiscreteOperator" title="netket.operator.DiscreteOperator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">netket.operator.DiscreteOperator</span></code></a></p></td>
+<td><p>This class is the base class for operators defined on a discrete Hilbert space.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_generated/operator/netket.operator.BoseHubbard.html#netket.operator.BoseHubbard" title="netket.operator.BoseHubbard"><code class="xref py py-obj docutils literal notranslate"><span class="pre">netket.operator.BoseHubbard</span></code></a></p></td>
 <td><p>An extended Bose Hubbard model Hamiltonian operator, containing both on-site interactions and nearest-neighboring density-density interactions.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="_generated/operator/netket.operator.GraphOperator.html#netket.operator.GraphOperator" title="netket.operator.GraphOperator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">netket.operator.GraphOperator</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="_generated/operator/netket.operator.GraphOperator.html#netket.operator.GraphOperator" title="netket.operator.GraphOperator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">netket.operator.GraphOperator</span></code></a></p></td>
 <td><p>A graph-based quantum operator.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="_generated/operator/netket.operator.LocalOperator.html#netket.operator.LocalOperator" title="netket.operator.LocalOperator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">netket.operator.LocalOperator</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="_generated/operator/netket.operator.LocalOperator.html#netket.operator.LocalOperator" title="netket.operator.LocalOperator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">netket.operator.LocalOperator</span></code></a></p></td>
 <td><p>A custom local operator.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="_generated/operator/netket.operator.Ising.html#netket.operator.Ising" title="netket.operator.Ising"><code class="xref py py-obj docutils literal notranslate"><span class="pre">netket.operator.Ising</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="_generated/operator/netket.operator.Ising.html#netket.operator.Ising" title="netket.operator.Ising"><code class="xref py py-obj docutils literal notranslate"><span class="pre">netket.operator.Ising</span></code></a></p></td>
 <td><p>The Transverse-Field Ising Hamiltonian <span class="math notranslate nohighlight">\(-h\sum_i \sigma_i^{(x)} +J\sum_{\langle i,j\rangle} \sigma_i^{(z)}\sigma_j^{(z)}\)</span>.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="_generated/operator/netket.operator.Heisenberg.html#netket.operator.Heisenberg" title="netket.operator.Heisenberg"><code class="xref py py-obj docutils literal notranslate"><span class="pre">netket.operator.Heisenberg</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="_generated/operator/netket.operator.Heisenberg.html#netket.operator.Heisenberg" title="netket.operator.Heisenberg"><code class="xref py py-obj docutils literal notranslate"><span class="pre">netket.operator.Heisenberg</span></code></a></p></td>
 <td><p>The Heisenberg hamiltonian on a lattice.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="_generated/operator/netket.operator.PauliStrings.html#netket.operator.PauliStrings" title="netket.operator.PauliStrings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">netket.operator.PauliStrings</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="_generated/operator/netket.operator.PauliStrings.html#netket.operator.PauliStrings" title="netket.operator.PauliStrings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">netket.operator.PauliStrings</span></code></a></p></td>
 <td><p>A Hamiltonian consisiting of the sum of products of Pauli operators.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="_generated/operator/netket.operator.LocalLiouvillian.html#netket.operator.LocalLiouvillian" title="netket.operator.LocalLiouvillian"><code class="xref py py-obj docutils literal notranslate"><span class="pre">netket.operator.LocalLiouvillian</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="_generated/operator/netket.operator.LocalLiouvillian.html#netket.operator.LocalLiouvillian" title="netket.operator.LocalLiouvillian"><code class="xref py py-obj docutils literal notranslate"><span class="pre">netket.operator.LocalLiouvillian</span></code></a></p></td>
 <td><p>LocalLiouvillian super-operator, acting on the DoubledHilbert (tensor product) space ℋ⊗ℋ.</p></td>
 </tr>
 </tbody>
